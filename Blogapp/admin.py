@@ -34,9 +34,9 @@ admin.site.register(Blog, BlogAdmin)
 
 
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ("author_username", "full_name" "birthdate", "blog_count")
+    list_display = ("author_username", "full_name", "birthdate", "blog_count")
     search_fields = ("author_username",)
-    readonly_fields = ("author_username", "full_name" "birthdate", "blog_count")
+    readonly_fields = ("author_username", "full_name", "birthdate", "blog_count")
     list_per_page = 25
 
     def blog_count(self, obj):
