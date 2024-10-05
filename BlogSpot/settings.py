@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'BlogSpot.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'Library',
+        'NAME': 'BlogSpot',
         'USER': 'root',
         'PASSWORD': 'password',
         'HOST': 'localhost',
