@@ -19,13 +19,5 @@
     <div class="blog-content">
       {{ blog.content|linebreaks }}
     </div>
-
-    <div class="blog-status">
-      <p><strong>Status:</strong> {{ blog.status }}</p>
-    </div>
-
-    <div class="back-link">
-      <a href="{% url 'blogapp:home' %}">Back to Home</a>
-    </div>
   </div>
 {% endblock %}

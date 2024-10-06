@@ -10,7 +10,7 @@ def home(request):
   return render(request, 'index.html', {'blogs': blogs})
 
 def blog_details(request, slug):
-  blog = get_object_or404(Blog, slug=slug)
+  blog = get_object_or_404(Blog, slug=slug)
   return render(request, 'blog_details.html', {'blog': blog})
 
 def authors(request):

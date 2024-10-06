@@ -35,7 +35,7 @@ form input[type="file"] {
   margin-top: 5px;
   border-radius: 5px;
   border: 1px solid #1a1a40;
-  background-color: #1f1f4b;
+  background-color: #090626;
   color: #b5e7e7;
 }
 
@@ -49,8 +49,8 @@ form input[type="password"]:focus,
 form input[type="date"]:focus,
 form textarea:focus {
   outline: none;
-  border: 1px solid #0b5ed7;
-  background-color: #292955;
+  border-color: rgb(20, 208, 225);
+  box-shadow: 0 0 5px rgba(20, 208, 225, 0.5);
 }
 
 form button[type="submit"] {

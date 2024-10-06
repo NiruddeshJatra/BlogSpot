@@ -1,7 +1,7 @@
 /* Container for the blog details */
 .blog-details-container {
-  max-width: 800px;
-  margin: 50px auto;
+  max-width: 900px;
+  margin: 30px auto;
   padding: 20px;
   background-color: #1c1c3b;
   border-radius: 10px;
@@ -31,7 +31,7 @@
   font-size: 1.1rem;
   line-height: 1.6;
   margin-bottom: 30px;
-  color: #e0e0ff;
+  color: #f1f0e2;
 }
 
 .blog-status {
@@ -43,23 +43,4 @@
   font-size: 1.1rem;
   font-weight: bold;
   margin-bottom: 20px;
-}
-
-.back-link {
-  text-align: center;
-}
-
-.back-link a {
-  color: #0b5ed7;
-  font-size: 1.2rem;
-  text-decoration: none;
-  border: 2px solid #0b5ed7;
-  padding: 10px 15px;
-  border-radius: 5px;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.back-link a:hover {
-  background-color: #0b5ed7;
-  color: white;
 }
