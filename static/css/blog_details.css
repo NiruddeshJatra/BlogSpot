@@ -1,6 +1,6 @@
 /* Container for the blog details */
 .blog-details-container {
-  max-width: 900px;
+  max-width: 500px;
   margin: 30px auto;
   padding: 20px;
   background-color: #1c1c3b;
@@ -28,7 +28,7 @@
 }
 
 .blog-content {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   line-height: 1.6;
   margin-bottom: 30px;
   color: #f1f0e2;
