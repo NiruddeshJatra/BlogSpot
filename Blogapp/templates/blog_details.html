@@ -2,9 +2,30 @@
 {% load static %}
 
 {% block title %}
-  
+  BlogSpot - {{ blog.title }}
 {% endblock %}
 
 {% block content %}
-  
-{% endblock %} 
+  <!-- Link to the custom CSS for blog details page -->
+  <link rel="stylesheet" href="{% static 'css/blog_details.css' %}">
+
+  <div class="blog-details-container">
+    <h1 class="blog-title">{{ blog.title }}</h1>
+    <p class="blog-meta">
+      <span class="author">by {{ blog.author.username }}</span> | 
+      <span class="date">Published on {{ blog.created_at|date:"F j, Y" }}</span>
+    </p>
+
+    <div class="blog-content">
+      {{ blog.content|linebreaks }}
+    </div>
+
+    <div class="blog-status">
+      <p><strong>Status:</strong> {{ blog.status }}</p>
+    </div>
+
+    <div class="back-link">
+      <a href="{% url 'blogapp:home' %}">Back to Home</a>
+    </div>
+  </div>
+{% endblock %}
