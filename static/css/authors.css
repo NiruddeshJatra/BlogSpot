@@ -2,28 +2,33 @@
 .authors-container {
   max-width: 1000px;
   margin: 50px auto;
-  padding: 20px;
-  background-color: #1c1c3b;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 40px;
   color: azure;
 }
 
 /* Table styles */
 table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate; /* Allows border-radius to apply */
+  border-spacing: 0;
+  letter-spacing: 0.05rem;
   margin: 20px 0;
-  background-color: #0d0d2b;
+  background-color: rgba(13, 13, 43, 0.9);
+  border-radius: 15px; /* Rounded table corners */
+  overflow: hidden; /* Prevents overflow from cells */
+  box-shadow: 0 8px 16px rgba(0, 1, 15, 0.686);
 }
 
+/* Roundish header */
 thead {
-  background-color: #1a1a40;
+  background-color: #132a4b;
+  border-top-left-radius: 15px; /* Rounds the top left corner */
+  border-top-right-radius: 15px; /* Rounds the top right corner */
 }
 
 th, td {
-  padding: 12px 15px;
-  text-align: left;
+  padding: 15px 15px;
+  text-align: center;
   color: azure;
 }
 
@@ -32,17 +37,35 @@ th {
   border-bottom: 2px solid #1a1a40;
 }
 
+/* Make sure header cells match the round corners */
+th:first-child {
+  border-top-left-radius: 15px;
+}
+
+th:last-child {
+  border-top-right-radius: 15px;
+}
+
+/* Roundish rows */
 tbody tr {
   border-bottom: 1px solid #1a1a40;
 }
 
 tbody tr:nth-child(even) {
-  background-color: #1f1f4b;
+  background-color: rgba(31, 31, 75, 0.9);
+  transition: background-color 0.3s, transform 0.4s ease-in-out;
 }
 
 tbody tr:hover {
-  background-color: #292955;
+  background: linear-gradient(135deg, rgba(20, 41, 100, 0.9), rgba(6, 6, 58, 0.8));
   cursor: pointer;
+  transform: scale(1.01); /* Subtle 3D tilt */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Highlight hovered table row and cell */
+tbody tr:hover td {
+  color: #fff; /* Text turns white */
 }
 
 td {
@@ -58,6 +81,16 @@ td a:hover {
   color: #0b5ed7;
 }
 
+/* Add roundish corners to the bottom rows */
+tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 15px; /* Rounds the bottom left corner */
+}
+
+tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 15px; /* Rounds the bottom right corner */
+}
+
+/* Table borders */
 table th, table td {
   border-right: 1px solid #1a1a40;
 }

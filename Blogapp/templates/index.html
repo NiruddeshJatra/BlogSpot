@@ -11,11 +11,11 @@
   <div class="blog-container">
     {% for blog in blogs %}
       <a href="{% url 'blogapp:blog_details' slug=blog.slug %}" class="read-more">
-        <div class="blog-card">
+        <article class="blog-card">
           <h3 class="blog-title">{{ blog.title }}</h3>
           <p class="blog-author">By {{ blog.author.username }}</p>
           <p class="blog-preview">{{ blog.content|truncatewords:20 }}</p>
-        </div>
+        </article>
       </a>
     {% endfor %}
   </div>

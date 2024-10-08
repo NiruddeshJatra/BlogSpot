@@ -1,10 +1,42 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} 
 {% load static %}
 
-{% block title %}
-  
-{% endblock %}
+{% block title %} 
+  Profile of {{ user.username }} 
+{% endblock %} 
 
 {% block content %}
-  
-{% endblock %} 
+
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+<div class="profile-container">
+  <div class="profile-details">
+    <img
+      src="{{ profile.profilePic.url }}"
+      alt="{{ user.username }}'s profile picture"
+      class="profile-pic"
+    />
+    <h2>{{ user.username }}</h2>
+    <p>
+      <strong>Full Name:</strong> {{ user.first_name }} {{ user.last_name }}
+    </p>
+    <p><strong>Birthdate:</strong> {{ profile.birthdate }}</p>
+    <p><strong>About:</strong> {{ profile.about }}</p>
+  </div>
+
+  <div class="user-blogs">
+    <h3>{{ user.username }}'s Blogs</h3>
+    <ul>
+      {% for blog in blogs %}
+      <li>
+        <a href="{% url 'blogapp:blog_details' slug=blog.slug %}"
+          >{{ blog.title }}</a
+        >
+        <p>{{ blog.created_at }}</p>
+      </li>
+      {% empty %}
+      <p>No blogs published yet.</p>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endblock %}

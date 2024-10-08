@@ -17,9 +17,17 @@ def authors(request):
   authors = Profile.objects.all()
   return render(request, 'authors.html', {'authors': authors})
 
-def profile(request, slug):
-  profile = get_object_or_404(Profile, slug=slug)
-  return render(request, 'profile.html', {'profile': profile})
+def profile(request, username):
+  user = get_object_or_404(User, username=username)
+  profile = get_object_or_404(Profile, author=user)
+  blogs = Blog.objects.filter(author=user)
+
+  context = {
+      'user': user,
+      'profile': profile,
+      'blogs': blogs,
+  }
+  return render(request, 'profile.html', context)
 
 def create_blog(request):
   if request.method == 'POST':

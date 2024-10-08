@@ -1,12 +1,12 @@
 /* Container for the blog details */
 .blog-details-container {
-  max-width: 500px;
+  max-width: 800px;
   margin: 30px auto;
-  padding: 20px;
-  background-color: #1c1c3b;
+  padding: 60px;
+  background: radial-gradient(circle at 50% 100%, #1a2a6c, #16235b, #0d1b43, #020413); /* Gradient from the bottom */
   border-radius: 10px;
   color: azure;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 16px rgba(10, 9, 40, 0.836);
 }
 
 .blog-title {
@@ -30,17 +30,6 @@
 .blog-content {
   font-size: 1.2rem;
   line-height: 1.6;
-  margin-bottom: 30px;
+  margin:50px 30px;
   color: #f1f0e2;
-}
-
-.blog-status {
-  background-color: #0b5ed7;
-  color: white;
-  padding: 10px;
-  border-radius: 5px;
-  text-align: center;
-  font-size: 1.1rem;
-  font-weight: bold;
-  margin-bottom: 20px;
 }

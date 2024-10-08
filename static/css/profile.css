@@ -1,0 +1,45 @@
+.profile-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+  background: radial-gradient(circle at 50% 100%, #1a2a6c, #16235b, #0d1b43, #020413); /* Gradient from the bottom */
+  border-radius: 10px;
+  color: azure;
+  box-shadow: 0 8px 16px rgba(10, 9, 40, 0.836);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.profile-details {
+  text-align: center;
+}
+
+.profile-pic {
+  width: 150px; /* Set the width and height according to your preference */
+  height: 150px;
+  border-radius: 50%; /* This creates the circular shape */
+  object-fit: cover; /* Ensures the image fills the circle without stretching */
+  border: 3px solid #b5e7e7; /* Optional: adds a border around the image */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: adds a shadow for effect */
+}
+
+.user-blogs {
+  margin-top: 30px;
+}
+
+.user-blogs ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.user-blogs ul li {
+  margin-bottom: 10px;
+}
+
+.user-blogs ul li a {
+  color: #1a73e8;
+  text-decoration: none;
+}
+
+.user-blogs ul li a:hover {
+  text-decoration: underline;
+}

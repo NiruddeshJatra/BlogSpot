@@ -13,6 +13,7 @@
     <meta name="author" content="niruddesh jatra">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{% static 'css/global.css' %}">
+
   </head>
   <body>
 
@@ -25,12 +26,29 @@
       </div>
       <h2>BlogSpot</h2>
       <div class="navbar-right">
-        <a href="{% url 'blogapp:register' %}">Register</a>
+        {% if user.is_authenticated %}
+          <!-- Link to the current user's profile page -->
+          <a href="{% url 'blogapp:profile' user.username %}">Profile</a>
+          <a href="{% url 'blogapp:logout' %}">Logout</a>
+        {% else %}
+          <a href="{% url 'blogapp:login' %}">Login</a>
+          <a href="{% url 'blogapp:register' %}">Register</a>
+        {% endif %}
       </div>
     </nav>
 
     <!-- Main Content -->
     <div class="content">
+      <!-- Starry night background -->
+      <div class="stars">
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <!-- Add more star divs for a denser starry sky -->
+      </div>
+
       {% block content %}
         
       {% endblock %}

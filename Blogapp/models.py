@@ -12,6 +12,11 @@ class Profile(models.Model):
     about = models.TextField()
     profilePic = models.ImageField(upload_to="profiles/", blank=True)
 
+    def blog_count(self):
+        return Blog.objects.filter(author=self.author).count()
+
+    blog_count.short_description = "Number of Blogs"
+
     class Meta:
         ordering = ["author__username"]
 
@@ -22,6 +27,7 @@ class Profile(models.Model):
         if not self.slug:
             self.slug = slugify(self.author.username)
         super(Profile, self).save(*args, **kwargs)
+
 
 class Blog(models.Model):
     options = (
@@ -39,15 +45,15 @@ class Blog(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField()
     status = models.CharField(max_length=10, choices=options, default="draft")
-    
+
     class Meta:
-        ordering = ('-created_at',)
-        
+        ordering = ("-created_at",)
+
     def save(self, *args, **kwargs):
         if not self.slug:
             count = Blog.objects.count() + 1
             self.slug = f"blog{count}"
         super(Blog, self).save(*args, **kwargs)
-        
+
     def __str__(self):
         return f"{self.title} by {self.author.username}"

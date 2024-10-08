@@ -39,11 +39,6 @@ class ProfileAdmin(admin.ModelAdmin):
     readonly_fields = ("author_username", "full_name", "birthdate", "blog_count")
     list_per_page = 25
 
-    def blog_count(self, obj):
-        return Blog.objects.filter(author=obj.author).count()
-
-    blog_count.short_description = "Number of Blogs"
-
     def author_username(self, obj):
         return obj.author.username
 

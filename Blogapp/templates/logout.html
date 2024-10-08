@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  BlogSpot - Logout
+{% endblock %}
+
+{% block content %}
+  <link rel="stylesheet" href="{% static 'css/logout.css' %}">
+
+  <div class="logout-container">
+    <h2>Logout</h2>
+    <p>Are you sure you want to logout?</p>
+
+    <!-- Correct logout form with POST method -->
+    <form method="POST" action="{% url 'blogapp:logout' %}">
+      {% csrf_token %}
+      <button type="submit">Logout</button>
+    </form>
+  </div>
+{% endblock %}
