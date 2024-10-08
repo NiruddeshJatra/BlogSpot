@@ -14,5 +14,5 @@ urlpatterns = [
     path('edit/<slug:slug>/', views.edit_blog, name='edit_blog'),
     path('register/', views.register, name='register'),
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(next_page='blogapp:home'), name='logout'),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
 ]

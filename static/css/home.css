@@ -54,12 +54,17 @@
 }
 
 .blog-preview {
+  font-weight: 200;
+  letter-spacing: 0.05em;
+  word-spacing: 0.08em;
   font-size: 1em;
   color: #f1f0e2;
   margin-bottom: 20px;
   height: 4em; /* Set a fixed height */
   overflow: hidden; /* Hide overflow text */
 }
+
+
 
 /* Pagination styling */
 .pagination {

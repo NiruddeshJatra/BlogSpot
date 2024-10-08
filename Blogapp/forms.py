@@ -14,27 +14,34 @@ class UserProfileForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['username', 'first_name', 'last_name', 'email', 'password1', 'password2']
+        fields = [
+            "username",
+            "first_name",
+            "last_name",
+            "email",
+            "password1",
+            "password2",
+        ]
 
     def save(self, commit=True):
         user = super().save(commit=False)
-        user.first_name = self.cleaned_data['first_name']
-        user.last_name = self.cleaned_data['last_name']
-        user.email = self.cleaned_data['email']
-        
+        user.first_name = self.cleaned_data["first_name"]
+        user.last_name = self.cleaned_data["last_name"]
+        user.email = self.cleaned_data["email"]
+
         if commit:
             user.save()
             # Create a corresponding Profile
             profile = Profile.objects.create(
                 author=user,
-                birthdate=self.cleaned_data['birthdate'],
-                about=self.cleaned_data['about'],
-                profilePic=self.cleaned_data.get('profilePic')
+                birthdate=self.cleaned_data["birthdate"],
+                about=self.cleaned_data["about"],
+                profilePic=self.cleaned_data.get("profilePic"),
             )
         return user
 
+
 class BlogForm(forms.ModelForm):
     class Meta:
-      model = Blog
-      fields = ("title","content","author")
-      
+        model = Blog
+        fields = ("title", "content")

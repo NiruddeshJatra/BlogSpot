@@ -33,15 +33,14 @@ def create_blog(request):
   if request.method == 'POST':
     form = BlogForm(request.POST)
     if form.is_valid():
-      blog = form.save()
-      blog.author = User.objects.get(id=request.POST['author'])
+      blog = form.save(commit=False)
+      blog.author = request.user
       blog.save()
       return redirect('blogapp:home')
   else:
     form = BlogForm()
     
-  authors = Profile.objects.select_related('author').all()
-  return render(request, 'create_blog.html', {'form': form, 'authors': authors})
+  return render(request, 'create_blog.html', {'form': form})
 
 def register(request):
   if request.method == 'POST':
