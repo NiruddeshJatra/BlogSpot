@@ -85,17 +85,3 @@ form button[type="submit"]:hover {
   transform: translateY(-2px); /* Slight lift effect */
 }
 
-/* Responsive design for smaller screens */
-@media screen and (max-width: 768px) {
-  .register-container {
-    padding: 20px; /* Adjust padding for small screens */
-  }
-  form button[type="submit"] {
-    font-size: 1rem; /* Adjust button font size */
-  }
-}
-
-/* Hide conditions beside the input fields */
-.errorlist {
-  display: none; /* Hide error messages */
-}

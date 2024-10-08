@@ -11,7 +11,7 @@ urlpatterns = [
     path('authors/', views.authors, name='authors'),
     path('create/', views.create_blog, name='create_blog'),
     path('delete/<slug:slug>/', views.delete_blog, name='delete_blog'),
-    path('edit/<slug:slug>/', views.edit_blog, name='edit_blog'),
+    path('edit/<slug:slug>/', views.create_blog, name='edit_blog'),
     path('register/', views.register, name='register'),
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),

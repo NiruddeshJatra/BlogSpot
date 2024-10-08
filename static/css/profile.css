@@ -26,20 +26,89 @@
   margin-top: 30px;
 }
 
-.user-blogs ul {
-  list-style-type: none;
-  padding: 0;
+.user-blog-heading {
+  padding-left: 20px;
 }
 
-.user-blogs ul li {
-  margin-bottom: 10px;
+.blog-tiles {
+  display: flex;
+  flex-direction: column; /* Stack tiles vertically */
+  gap: 20px; /* Space between the tiles */
 }
 
-.user-blogs ul li a {
-  color: #1a73e8;
-  text-decoration: none;
+.blog-tile {
+  flex: 1; /* Allow the tile to take full width */
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent background for tiles */
+  border-radius: 8px; /* Rounded corners */
+  padding: 10px; /* Space inside the tile */
+  color: azure; /* Text color */
+  text-align: center; /* Center-align text */
+  transition: transform 0.3s, box-shadow 0.3s; /* Smooth hover effects */
+  cursor: pointer; /* Cursor pointer for clickable tiles */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
 }
 
-.user-blogs ul li a:hover {
-  text-decoration: underline;
+.blog-tile:hover {
+  transform: translateY(-5px); /* Lift effect on hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Darker shadow on hover */
+}
+
+.blog-title {
+  font-size: 1.2rem; /* Font size for the blog title */
+  margin: 5px 0px; /* Margin below the title */
+}
+
+.blog-date {
+  font-size: 0.9rem; /* Smaller font for the date */
+  color: #b5e7e7; /* Date text color */
+}
+
+.blog-actions {
+  position: absolute; /* Position absolutely within the tile */
+  top: 20px; /* Align actions near the top */
+  right: 15px; /* Align actions to the right side of the tile */
+  display: flex;
+  flex-direction: column; /* Stack links vertically */
+  gap: 10px; /* Space between links */
+}
+
+.blog-actions a, 
+.blog-actions button {
+  font-size: 0.9rem; /* Adjust font size for consistency */
+  text-decoration: none; /* Remove underline for links */
+  background: none; /* Remove default button background */
+  padding: 5px 10px; /* Add some padding for spacing */
+  cursor: pointer; /* Show pointer on hover */
+  transition: color 0.3s, border 0.3s; /* Smooth hover effect */
+}
+
+/* Edit link styling */
+.edit-link {
+  border: 1px solid #fb7c22;
+  border-radius: 5px;
+  color: #fb7c22; /* Orange for Edit button */
+}
+
+/* Delete link styling */
+.delete-link {
+  border: 1px solid #ad0707;
+  border-radius: 5px;
+  color: #ad0707; /* Red for Delete button */
+}
+
+/* Hover effect */
+.edit-link:hover, .delete-link:hover {
+  opacity: 0.9; /* Slightly transparent on hover */
+  color: white; /* Change text color on hover */
+}
+
+/* Specific hover effect for Edit */
+.edit-link:hover {
+  background-color: #fb7c22; /* Orange background on hover for Edit */
+}
+
+/* Specific hover effect for Delete */
+.delete-link:hover {
+  background-color: #ad0707; /* Red background on hover for Delete */
 }

@@ -14,7 +14,6 @@ class Profile(models.Model):
 
     def blog_count(self):
         return Blog.objects.filter(author=self.author).count()
-
     blog_count.short_description = "Number of Blogs"
 
     class Meta:
@@ -51,8 +50,18 @@ class Blog(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
+            # Start with the current blog count
             count = Blog.objects.count() + 1
-            self.slug = f"blog{count}"
+            base_slug = f"blog{count}"
+            slug = base_slug
+
+            # Increment the slug until it's unique
+            while Blog.objects.filter(slug=slug).exists():
+                count += 1
+                slug = f"blog{count}"
+            
+            self.slug = slug
+
         super(Blog, self).save(*args, **kwargs)
 
     def __str__(self):

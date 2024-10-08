@@ -24,12 +24,69 @@
 }
 
 .blog-meta .author {
-  font-weight: bold;
+  font-weight: 600;
+  color: #d0d0f2;
+}
+
+.blog-meta .author:hover {
+  color: rgb(20, 208, 225);
 }
 
 .blog-content {
+  font-weight: 200;
+  letter-spacing: 0.05em;
+  word-spacing: 0.08em;
   font-size: 1.2rem;
-  line-height: 1.6;
-  margin:50px 30px;
+  line-height: 1.8;
+  margin: 50px 30px;
   color: #f1f0e2;
+}
+
+/* Center the buttons */
+.blog-actions {
+  display: flex;
+  justify-content: center; /* Center the buttons */
+  gap: 30px; /* Space between links */
+  margin-top: 30px; /* Add margin at the top */
+}
+
+.blog-actions a,
+.blog-actions button {
+  font-size: 1rem;
+  text-decoration: none;
+  background: none;
+  padding: 10px 20px; /* Add padding for a uniform size */
+  cursor: pointer;
+  transition: color 0.3s, border 0.3s;
+  width: 150px; /* Set a fixed width for buttons */
+  text-align: center; /* Ensure text is centered */
+}
+
+/* Delete link styling */
+.delete-link {
+  border: 1px solid #ad0707;
+  border-radius: 5px;
+  color: #ad0707; /* Red for Delete button */
+}
+
+/* Edit link styling */
+.edit-link {
+  border: 1px solid #fb7c22;
+  border-radius: 5px;
+  color: #fb7c22; /* Orange for Edit button */
+}
+
+/* Hover effect */
+.edit-link:hover, .delete-link:hover {
+  opacity: 0.9;
+  border: none;
+  color: white; /* Change text color on hover */
+}
+
+.edit-link:hover {
+  background-color: #fb7c22; /* Orange background on hover */
+}
+
+.delete-link:hover {
+  background-color: #ad0707; /* Red background on hover */
 }

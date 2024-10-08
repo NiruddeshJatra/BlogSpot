@@ -1,13 +1,7 @@
-{% extends 'base.html' %} 
-{% load static %}
+{% extends 'base.html' %} {% load static %} {% block title %} Profile of {{
+user.username }} {% endblock %} {% block content %}
 
-{% block title %} 
-  Profile of {{ user.username }} 
-{% endblock %} 
-
-{% block content %}
-
-<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+<link rel="stylesheet" href="{% static 'css/profile.css' %}" />
 <div class="profile-container">
   <div class="profile-details">
     <img
@@ -24,19 +18,36 @@
   </div>
 
   <div class="user-blogs">
-    <h3>{{ user.username }}'s Blogs</h3>
-    <ul>
+    <h3 class="user-blog-heading">{{ user.username }}'s Blogs</h3>
+    <div class="blog-tiles">
       {% for blog in blogs %}
-      <li>
-        <a href="{% url 'blogapp:blog_details' slug=blog.slug %}"
-          >{{ blog.title }}</a
-        >
-        <p>{{ blog.created_at }}</p>
-      </li>
+      <div class="blog-tile">
+        <a href="{% url 'blogapp:blog_details' slug=blog.slug %}">
+          <h4 class="blog-title">{{ blog.title }}</h4>
+          <p class="blog-date">{{ blog.created_at|date:"F j, Y" }}</p>
+        </a>
+        {% if user.is_authenticated and user == blog.author %}
+        <div class="blog-actions">
+          <a
+            href="{% url 'blogapp:edit_blog' slug=blog.slug %}"
+            class="edit-link"
+            >Edit</a
+          >
+          <form
+            action="{% url 'blogapp:delete_blog' slug=blog.slug %}"
+            method="POST"
+            style="display: inline"
+          >
+            {% csrf_token %}
+            <button type="submit" class="delete-link">Delete</button>
+          </form>
+        </div>
+        {% endif %}
+      </div>
       {% empty %}
       <p>No blogs published yet.</p>
       {% endfor %}
-    </ul>
+    </div>
   </div>
 </div>
 {% endblock %}
