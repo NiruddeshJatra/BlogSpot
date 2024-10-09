@@ -84,7 +84,8 @@ def edit_blog(request, slug):
         form = BlogForm(instance=blog)
 
     return render(request, 'create_blog.html', {'form': form, 'blog': blog})
-  
+
+
 @login_required
 def delete_blog(request, slug):
     blog = get_object_or_404(Blog, slug=slug, author=request.user)
