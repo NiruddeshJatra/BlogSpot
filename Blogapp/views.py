@@ -5,6 +5,9 @@ from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from .forms import UserProfileForm, BlogForm
+import logging
+logger = logging.getLogger(__name__)
+
 
 
 # Create your views here.
@@ -29,12 +32,12 @@ def authors(request):
 
 
 def profile(request, username):
-    user = get_object_or_404(User, username=username)
-    profile = get_object_or_404(Profile, author=user)
-    blogs = Blog.objects.filter(author=user)
+    current_user = get_object_or_404(User, username=username)
+    profile = get_object_or_404(Profile, author=current_user)
+    blogs = Blog.objects.filter(author=current_user)
 
     context = {
-        "user": user,
+        "current_user": current_user,
         "profile": profile,
         "blogs": blogs,
     }
