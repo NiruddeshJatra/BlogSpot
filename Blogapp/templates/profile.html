@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
-{% load static %} 
+{% load static %}
 
-{% block title %} 
-  Profile of {{current_user.username }} 
-{% endblock %} 
+{% block title %}
+  Profile of {{ current_user.username }}
+{% endblock %}
 
 {% block content %}
-
 <link rel="stylesheet" href="{% static 'css/profile.css' %}" />
+
 <div class="profile-container">
   <div class="profile-details">
     <img
@@ -16,15 +16,22 @@
       class="profile-pic"
     />
     <h2>{{ current_user.username }}</h2>
-    <p>
-      <strong>Full Name:</strong> {{ current_user.first_name }} {{ current_user.last_name }}
-    </p>
+    <p><strong>Full Name:</strong> {{ current_user.first_name }} {{ current_user.last_name }}</p>
     <p><strong>Birthdate:</strong> {{ profile.birthdate }}</p>
     <p><strong>About:</strong> {{ profile.about }}</p>
   </div>
 
+  <h3 class="user-blog-heading"><i>{{ current_user.username }}'s Blogs</i></h3>
+  <!-- Blog Status Tabs -->
+  <div class="blog-status-tabs">
+    <a href="?status=draft" class="tab {% if request.GET.status == 'draft' %}active{% endif %}">Draft</a>
+    <a href="?status=submitted" class="tab {% if request.GET.status == 'submitted' %}active{% endif %}">Submitted</a>
+    <a href="?status=reviewed" class="tab {% if request.GET.status == 'reviewed' %}active{% endif %}">Reviewed</a>
+    <a href="?status=published" class="tab {% if request.GET.status == 'published' %}active{% endif %}">Published</a>
+    <a href="?status=rejected" class="tab {% if request.GET.status == 'rejected' %}active{% endif %}">Rejected</a>
+  </div>  
+
   <div class="user-blogs">
-    <h3 class="user-blog-heading">{{ current_user.username }}'s Blogs</h3>
     <div class="blog-tiles">
       {% for blog in blogs %}
       <div class="blog-tile">
@@ -34,16 +41,8 @@
         </a>
         {% if user.is_authenticated and user == blog.author %}
         <div class="blog-actions">
-          <a
-            href="{% url 'blogapp:edit_blog' slug=blog.slug %}"
-            class="edit-link"
-            >Edit</a
-          >
-          <form
-            action="{% url 'blogapp:delete_blog' slug=blog.slug %}"
-            method="POST"
-            style="display: inline"
-          >
+          <a href="{% url 'blogapp:edit_blog' slug=blog.slug %}" class="edit-link">Edit</a>
+          <form action="{% url 'blogapp:delete_blog' slug=blog.slug %}" method="POST" style="display: inline">
             {% csrf_token %}
             <button type="submit" class="delete-link">Delete</button>
           </form>
@@ -51,7 +50,7 @@
         {% endif %}
       </div>
       {% empty %}
-      <p>No blogs published yet.</p>
+      <p>No blogs available under this status.</p>
       {% endfor %}
     </div>
   </div>

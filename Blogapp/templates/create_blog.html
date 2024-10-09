@@ -20,7 +20,8 @@
         <label for="content">Content</label>
         <textarea class="form-control" id="content" name="content" rows="8" required>{{ blog.content }}</textarea>
       </div>
-      <button type="submit" class="submit-btn">{% if blog %}Update Blog{% else %}Create Blog{% endif %}</button>
+      <button type="submit" name="status" value="draft" class="submit-btn">Save as Draft</button>
+      <button type="submit" name="status" value="submitted" class="submit-btn">{% if blog %}Update Blog{% else %}Create Blog{% endif %}</button>
     </form>
   </div>
 {% endblock %}

@@ -5,62 +5,57 @@ from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from .forms import UserProfileForm, BlogForm
-import logging
-logger = logging.getLogger(__name__)
-
 
 
 # Create your views here.
 def home(request):
-    blogs = Blog.objects.all()
-    per_page = 5 if request.GET.get('screen_size') == 'small' else 12
-    paginator = Paginator(blogs, per_page)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-    
-    # Pass 'page_obj' to the template, not 'blogs'
-    return render(request, "index.html", {"blogs": page_obj})
+	blogs = Blog.objects.filter(status='published').all()
+	per_page = 5 if request.GET.get('screen_size') == 'small' else 12
+	paginator = Paginator(blogs, per_page)
+	page_number = request.GET.get('page')
+	page_obj = paginator.get_page(page_number)
+	
+	return render(request, "index.html", {"blogs": page_obj})
 
 def blog_details(request, slug):
-    blog = get_object_or_404(Blog, slug=slug)
-    return render(request, "blog_details.html", {"blog": blog})
+	blog = get_object_or_404(Blog, slug=slug)
+	return render(request, "blog_details.html", {"blog": blog})
 
 
 def authors(request):
-    authors = Profile.objects.all()
-    return render(request, "authors.html", {"authors": authors})
+  authors = Profile.objects.all()
+  return render(request, "authors.html", {"authors": authors})
 
 
 def profile(request, username):
-    current_user = get_object_or_404(User, username=username)
-    profile = get_object_or_404(Profile, author=current_user)
-    blogs = Blog.objects.filter(author=current_user)
+	current_user = get_object_or_404(User, username=username)
+	profile = get_object_or_404(Profile, author=current_user)
+	if status_filter := request.GET.get('status'):
+		blogs = Blog.objects.filter(author=current_user, status=status_filter)
+	else:
+		blogs = Blog.objects.filter(author=current_user, status='published')
 
-    context = {
-        "current_user": current_user,
-        "profile": profile,
-        "blogs": blogs,
-    }
-    return render(request, "profile.html", context)
+	return render(request, "profile.html", {"current_user": current_user, "profile": profile, "blogs": blogs})
 
 
 @login_required
 def create_blog(request, slug=None):
-    blog = None
-    if slug:
-        blog = get_object_or_404(Blog, slug=slug, author=request.user)
+	blog = None
+	if slug:
+		blog = get_object_or_404(Blog, slug=slug, author=request.user)
 
-    if request.method == "POST":
-        form = BlogForm(request.POST, instance=blog)
-        if form.is_valid():
-            blog = form.save(commit=False)
-            blog.author = request.user
-            blog.save()
-            return redirect("blogapp:home")
-    else:
-        form = BlogForm(instance=blog)
+	if request.method == "POST":
+		form = BlogForm(request.POST, instance=blog)
+		if form.is_valid():
+			blog = form.save(commit=False)
+			blog.author = request.user
+			blog.status = "draft" if request.POST.get("status") == "draft" else "submitted"
+			blog.save()
+			return redirect("blogapp:home")
+	else:
+		form = BlogForm(instance=blog)
 
-    return render(request, "create_blog.html", {"form": form, "blog": blog})
+	return render(request, "create_blog.html", {"form": form, "blog": blog})
 
 
 def register(request):

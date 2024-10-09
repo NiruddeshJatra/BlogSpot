@@ -22,12 +22,41 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: adds a shadow for effect */
 }
 
-.user-blogs {
-  margin-top: 30px;
+/* Blog Status Tabs Styling */
+.blog-status-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Space between tabs */
+  margin: 20px 0;
+}
+
+.blog-status-tabs .tab {
+  text-decoration: none;
+  padding: 10px 20px;
+  color: grey;
+  font-size: 1rem;
+  border: none;
+  border-bottom: 2px solid azure; /* Bottom border */
+  transition: color 0.3s, border-bottom 0.3s;
+  cursor: pointer;
+}
+
+/* Active Tab - Remove bottom border */
+.blog-status-tabs .tab.active {
+  border-bottom: 2px solid rgb(19, 172, 211);
+  color:rgb(0, 213, 255); /* Highlight active tab */
+}
+
+/* Hover effect */
+.blog-status-tabs .tab:hover {
+  color: rgb(20, 208, 225);
+  border-bottom: 2px solid rgb(19, 172, 211);
 }
 
 .user-blog-heading {
-  padding-left: 20px;
+  margin-top: 80px;
+  margin-bottom: 25px;
+  padding-left: 25px;
 }
 
 .blog-tiles {
