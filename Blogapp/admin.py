@@ -8,6 +8,7 @@ from .models import Blog, Profile
 class BlogAdmin(admin.ModelAdmin):
 	list_display = ("title", "author", "created_at")
 	search_fields = ("title", "author")
+	autocomplete_fields = ["author"]
 	list_filter = ("status",)
 	ordering = ("-created_at",)
 	readonly_fields = ("title", "author", "created_at", "slug", "content", "status")
@@ -42,6 +43,7 @@ admin.site.register(Blog, BlogAdmin)
 class ProfileAdmin(admin.ModelAdmin):
 	list_display = ("author", "full_name", "about", "blog_count")
 	search_fields = ("author", "full_name")
+	autocomplete_fields = ['author']
 	readonly_fields = ("author", "full_name", "birthdate", "blog_count", "slug", "about", "profilePic")
 	list_per_page = 25
 	
