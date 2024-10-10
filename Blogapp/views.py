@@ -29,22 +29,18 @@ def authors(request):
 
 
 def profile(request, username):
-	requested_user = get_object_or_404(User, username=username)
-	profile_info = get_object_or_404(Profile, author=requested_user)
+	profile_info = get_object_or_404(Profile, author__username=username)
 	if status_filter := request.GET.get('status'):
-		blogs = Blog.objects.filter(author=requested_user, status=status_filter)
+		blogs = Blog.objects.filter(author=profile_info.author, status=status_filter)
 	else:
-		blogs = Blog.objects.filter(author=requested_user, status='published')
+		blogs = Blog.objects.filter(author=profile_info.author, status='published')
 
 	return render(request, "profile.html", {"profile_info": profile_info, "blogs": blogs})
 
 
 @login_required
-def create_blog(request, slug=None):
-	blog = None
-	if slug:
-		blog = get_object_or_404(Blog, slug=slug, author=request.user)
-
+def create_or_edit_blog(request, slug=None):
+	blog = get_object_or_404(Blog, slug=slug) if slug else None
 	if request.method == "POST":
 		form = BlogForm(request.POST, instance=blog)
 		if form.is_valid():
@@ -56,7 +52,7 @@ def create_blog(request, slug=None):
 	else:
 		form = BlogForm(instance=blog)
 
-	return render(request, "create_blog.html", {"form": form, "blog": blog})
+	return render(request, "create_or_edit_blog.html", {"form": form, "blog": blog})
 
 
 def register(request):
