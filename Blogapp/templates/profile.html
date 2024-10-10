@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-  Profile of {{ current_user.username }}
+  Profile of {{ profile_info.author.username }}
 {% endblock %}
 
 {% block content %}
@@ -11,25 +11,28 @@
 <div class="profile-container">
   <div class="profile-details">
     <img
-      src="{{ profile.profilePic.url }}"
-      alt="{{ current_user.username }}'s profile picture"
+      src="{{ profile_info.profilePic.url }}"
+      alt="{{ profile_info.author.username }}'s profile picture"
       class="profile-pic"
     />
-    <h2>{{ current_user.username }}</h2>
-    <p><strong>Full Name:</strong> {{ current_user.first_name }} {{ current_user.last_name }}</p>
-    <p><strong>Birthdate:</strong> {{ profile.birthdate }}</p>
-    <p><strong>About:</strong> {{ profile.about }}</p>
+    <h2>{{ profile_info.author.username }}</h2>
+    <p><strong>Full Name:</strong> {{ profile_info.author.first_name }} {{ profile_info.author.last_name }}</p>
+    <p><strong>Birthdate:</strong> {{ profile_info.birthdate }}</p>
+    <p><strong>About:</strong> {{ profile_info.about }}</p>
   </div>
 
-  <h3 class="user-blog-heading"><i>{{ current_user.username }}'s Blogs</i></h3>
+  <h3 class="user-blog-heading"><i>{{ profile_info.author.username }}'s Blogs</i></h3>
+
   <!-- Blog Status Tabs -->
+  {% if user.is_authenticated and user == profile_info.author %}
   <div class="blog-status-tabs">
     <a href="?status=draft" class="tab {% if request.GET.status == 'draft' %}active{% endif %}">Draft</a>
     <a href="?status=submitted" class="tab {% if request.GET.status == 'submitted' %}active{% endif %}">Submitted</a>
     <a href="?status=reviewed" class="tab {% if request.GET.status == 'reviewed' %}active{% endif %}">Reviewed</a>
     <a href="?status=published" class="tab {% if request.GET.status == 'published' %}active{% endif %}">Published</a>
     <a href="?status=rejected" class="tab {% if request.GET.status == 'rejected' %}active{% endif %}">Rejected</a>
-  </div>  
+  </div>
+  {% endif %}  
 
   <div class="user-blogs">
     <div class="blog-tiles">

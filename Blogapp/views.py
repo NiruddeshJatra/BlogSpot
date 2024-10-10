@@ -17,6 +17,7 @@ def home(request):
 	
 	return render(request, "index.html", {"blogs": page_obj})
 
+
 def blog_details(request, slug):
 	blog = get_object_or_404(Blog, slug=slug)
 	return render(request, "blog_details.html", {"blog": blog})
@@ -28,14 +29,14 @@ def authors(request):
 
 
 def profile(request, username):
-	current_user = get_object_or_404(User, username=username)
-	profile = get_object_or_404(Profile, author=current_user)
+	requested_user = get_object_or_404(User, username=username)
+	profile_info = get_object_or_404(Profile, author=requested_user)
 	if status_filter := request.GET.get('status'):
-		blogs = Blog.objects.filter(author=current_user, status=status_filter)
+		blogs = Blog.objects.filter(author=requested_user, status=status_filter)
 	else:
-		blogs = Blog.objects.filter(author=current_user, status='published')
+		blogs = Blog.objects.filter(author=requested_user, status='published')
 
-	return render(request, "profile.html", {"current_user": current_user, "profile": profile, "blogs": blogs})
+	return render(request, "profile.html", {"profile_info": profile_info, "blogs": blogs})
 
 
 @login_required
