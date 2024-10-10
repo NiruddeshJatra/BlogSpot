@@ -31,13 +31,13 @@ class UserProfileForm(UserCreationForm):
 
     if commit:
       user.save()
-      # Create a corresponding Profile
       Profile.objects.create(
         author=user,
         birthdate=self.cleaned_data["birthdate"],
         about=self.cleaned_data["about"],
         profilePic=self.cleaned_data.get("profilePic"),
       )
+    
     return user
 
 

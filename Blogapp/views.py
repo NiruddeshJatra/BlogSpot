@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Blog, Profile
-from django.contrib.auth.admin import User
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
@@ -56,33 +55,20 @@ def create_or_edit_blog(request, slug=None):
 
 
 def register(request):
-    if request.method == "POST":
-        form = UserProfileForm(request.POST, request.FILES)
-        if form.is_valid():
-            user = form.save()
-            login(request, user)
-            return redirect("blogapp:home")
-    else:
-        form = UserProfileForm()
+  if request.method == "POST":
+    form = UserProfileForm(request.POST, request.FILES)
+    if form.is_valid():
+      user = form.save()
+      login(request, user)
+      return redirect("blogapp:home")
+  else:
+    form = UserProfileForm()
 
-    return render(request, "register.html", {"form": form})
-
-@login_required
-def edit_blog(request, slug):
-    blog = get_object_or_404(Blog, slug=slug, author=request.user)
-    if request.method == 'POST':
-        form = BlogForm(request.POST, instance=blog)
-        if form.is_valid():
-            form.save()
-            return redirect('blogapp:blog_details', slug=blog.slug)
-    else:
-        form = BlogForm(instance=blog)
-
-    return render(request, 'create_blog.html', {'form': form, 'blog': blog})
+  return render(request, "register.html", {"form": form})
 
 
 @login_required
 def delete_blog(request, slug):
-    blog = get_object_or_404(Blog, slug=slug, author=request.user)
-    blog.delete()
-    return redirect("blogapp:profile", username=request.user.username)
+  blog = get_object_or_404(Blog, slug=slug, author=request.user)
+  blog.delete()
+  return redirect("blogapp:profile", username=request.user.username)
