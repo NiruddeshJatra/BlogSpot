@@ -12,7 +12,7 @@
     <meta name="author" content="niruddesh jatra" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="{% static 'css/global.css' %}" />
-    <link rel="icon" href="{% static 'images/icon.ico' %}" />
+    <link rel="icon" href="{% static 'images/logo.ico' %}" />
   </head>
   <body>
     <!-- Navigation Bar -->
@@ -51,13 +51,12 @@
       </button>
 
       <!-- Dropdown Menu for Small Screens -->
-      <div id="dropdown-menu" class="dropdown">
+      <div id="dropdown-menu">
         <a href="{% url 'blogapp:home' %}">Home</a>
         <a href="{% url 'blogapp:authors' %}">Authors</a>
         {% if user.is_authenticated %}
         <a href="{% url 'blogapp:create_blog' %}">Create Blog</a>
-        {% endif %}
-        {% if user.is_authenticated %}
+        {% endif %} {% if user.is_authenticated %}
         <a href="{% url 'blogapp:profile' user.username %}">Profile</a>
         <form method="POST" action="{% url 'blogapp:logout' %}">
           {% csrf_token %}
@@ -71,26 +70,24 @@
     </nav>
 
     <!-- Main Content -->
-    <div class="main-content">{% block content %} {% endblock %}</div>
+    <main class="main-content">{% block content %} {% endblock %}</main>
 
     <!-- Footer -->
     <footer>
       <div class="footer-content">
         <p class="footer-title">BlogSpot - Sharing Ideas Worldwide</p>
         <div class="footer-logo">
-          <img src="" alt="Logo" width="50" />
+          <img src="{% static 'images/logo.png' %}" alt="Logo" width="50" />
         </div>
         <div class="contact-info">
           <h3>Contact</h3>
           <p>
-            <b>Email:</b
-            ><a href="mailto:nasifulalam1212@gmail.com" target="_blank"
+            Email:<a href="mailto:nasifulalam1212@gmail.com" target="_blank"
               >&nbsp;nasifulalam1212@gmail.com</a
             >
           </p>
           <p>
-            <b>Phone:</b
-            ><a href="tel:+801626181662" target="_blank">&nbsp;+801626181662</a>
+            Phone:<a href="tel:+801626181662" target="_blank">&nbsp;+801626181662</a>
           </p>
         </div>
       </div>
@@ -102,7 +99,7 @@
         dropdown.style.display =
           dropdown.style.display === "flex" ? "none" : "flex";
       }
-      
+
       document.addEventListener("DOMContentLoaded", function () {
         const screenSize = window.innerWidth <= 768 ? "small" : "large";
         const urlParams = new URLSearchParams(window.location.search);
