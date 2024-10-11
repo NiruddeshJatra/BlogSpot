@@ -14,7 +14,7 @@ def home(request):
 	page_number = request.GET.get('page')
 	page_obj = paginator.get_page(page_number)
 	
-	return render(request, "index.html", {"blogs": page_obj})
+	return render(request, "home.html", {"blogs": page_obj})
 
 
 def blog_details(request, slug):
