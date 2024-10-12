@@ -1,29 +1,33 @@
 /* Blog container for grid layout */
 .blog-container {
   display: grid;
-  gap: 2em;
-  width:80%;
   margin-top: 30px;
+  gap: 2em 3em;
   max-width: 1200px;
-  justify-items: center;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }
 
 /* Blog card styling */
 .blog-card {
   --hue-1: 210;
   --hue-2: 238;
-  --container-color: hsl(242, 50%, 11%);
-  padding: 20px;
+  --container-color: rgb(15, 14, 42);
+  padding: 7% 10%;
   border-radius: 1.25rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   height: clamp(150px, 25vh, 200px);
-  position: relative;
   text-align: center;
-  color: rgb(231, 247, 247);
   border: 4px solid transparent;
-  background: linear-gradient(var(--container-color), var(--container-color)) padding-box, linear-gradient(135deg, hsl(var(--hue-1), 85%, 70%) 0%, var(--container-color), var(--container-color), hsl(var(--hue-2), 70%, 55%) 100%) border-box;
-  overflow: hidden;
+  background: linear-gradient(var(--container-color), var(--container-color))
+      padding-box,
+    linear-gradient(
+        135deg,
+        hsl(var(--hue-1), 85%, 70%) 0%,
+        var(--container-color),
+        var(--container-color),
+        hsl(var(--hue-2), 70%, 55%) 100%
+      )
+      border-box;
   transition: transform 0.3s ease-in-out, box-shadow 0.3s;
 }
 
@@ -33,21 +37,29 @@
   --hue-1: 240;
   --hue-2: 200;
   border: 4px solid transparent;
-  background: linear-gradient(var(--container-color), var(--container-color)) padding-box, linear-gradient(135deg, hsl(var(--hue-1), 85%, 70%) 0%, var(--container-color), var(--container-color), hsl(var(--hue-2), 70%, 55%) 100%) border-box;
+  background: linear-gradient(var(--container-color), var(--container-color))
+      padding-box,
+    linear-gradient(
+        135deg,
+        hsl(var(--hue-1), 85%, 70%) 0%,
+        var(--container-color),
+        var(--container-color),
+        hsl(var(--hue-2), 70%, 55%) 100%
+      )
+      border-box;
 }
 
 .blog-title {
-  font-size: 1.5em;
+  font-size: 1.2rem;
   margin-bottom: 10px;
   color: #b5e7e7;
-  height: 1.5em; /* Set a fixed height */
-  overflow: hidden; /* Hide overflow text */
-  text-overflow: ellipsis; /* Add ellipsis for overflow */
-  white-space: nowrap; /* Prevent wrapping */
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .blog-author {
-  font-size: 1em;
+  font-size: 0.78rem;
   margin-bottom: 15px;
   color: #b5e7e7;
 }
@@ -55,15 +67,14 @@
 .blog-preview {
   font-weight: 200;
   letter-spacing: 0.05em;
-  word-spacing: 0.08em;
-  font-size: 1em;
+  word-spacing: 0.09em;
+  font-size: 0.8rem;
   color: #f1f0e2;
-  margin-bottom: 20px;
-  height: 4em; /* Set a fixed height */
-  overflow: hidden; /* Hide overflow text */
+  line-height: 1.6em;
+  height: 4.8em;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-
-
 
 /* Pagination styling */
 .pagination {
@@ -96,29 +107,3 @@
 }
 
 /*=============== BREAKPOINTS ===============*/
-/* For small devices */
-@media screen and (max-width: 320px) {
-  .content {
-    margin-inline: 1rem;
-  }
-  .blog-card {
-    padding: 2rem 1rem;
-  }
-}
-/* For medium devices */
-@media screen and (min-width: 576px) {
-  .blog-container {
-    grid-template-columns: 1fr; /* One column */
-  }
-}
-@media screen and (min-width: 768px) {
-  .blog-container {
-    grid-template-columns: repeat(2, 1fr); /* Two columns */
-  }
-}
-/* For large devices */
-@media screen and (min-width: 1120px) {
-  .blog-container {
-    grid-template-columns: repeat(3, 1fr); /* Three columns */
-  }
-}

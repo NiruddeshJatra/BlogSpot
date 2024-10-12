@@ -20,6 +20,11 @@ p {
   font-weight: 200;
   letter-spacing: 0.05em;
   word-spacing: 0.08em;
+  color: #f1f0e2;
+}
+
+strong {
+  font-weight: 500;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -42,7 +47,7 @@ nav {
   padding: 0 25px;
 }
 
-.navbar-left a, .navbar-right a, .logout-button {
+.navbar-link {
   background: none;
   border: none;
   color: rgb(181, 231, 231);
@@ -53,27 +58,20 @@ nav {
   margin: 0 clamp(10px, 1.5vw, 20px);
 }
 
-.navbar-left a:hover.navbar-right a:hover {
-  color: rgb(20, 208, 225);
-}
-
-.logout-button:hover {
-  color: rgb(20, 208, 225);
+.navbar-link:hover {
+  color: rgb(20, 208, 225) !important;
 }
 
 /* Navbar Title (Center) */
 nav h2 {
   font-size: 1.6rem;
   font-family: 'Forte Regular';
+  letter-spacing: normal;
   color: rgb(225, 254, 254);
 }
 
-nav h2:hover {
-  color: rgb(118, 221, 255);
-}
-
 /* Hamburger Button */
-.hamburger {
+#hamburger {
   background: none;
   border: none;
   color: #f0ffff;
@@ -82,10 +80,6 @@ nav h2:hover {
   position: absolute;
   left: 30px;
   top: 12px;
-}
-
-.hamburger:hover {
-  color: rgb(20, 208, 225);
 }
 
 /* Dropdown Menu for Small Screens */
@@ -102,34 +96,23 @@ nav h2:hover {
 }
 
 #dropdown-menu a, #dropdown-menu button {
-  background: none;
-  border: none;
-  color: rgb(181, 231, 231);
-  font-size: 1.1rem;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  letter-spacing: 0.15em;
-  cursor: pointer;
   letter-spacing: 0.1em;
   margin-bottom: 15px;
   margin-left: 30px;
-}
-
-#dropdown-menu a:hover, #dropdown-menu button:hover {
-  color: rgb(20, 208, 225);
 }
 
 /* Main Content */
 main {
   background: radial-gradient(circle, #1a2d77, #16235b, #000000);
   margin-top: 50px;
-  padding: 2rem;
+  padding: 2rem 10vw;
 }
 
 /* Footer */
 footer {
   background-color: #090626;
   color: white;
-  padding: 20px 0;
+  padding: 35px 0;
   text-align: center;
 }
 
@@ -168,7 +151,7 @@ footer {
 
 /* Hide the hamburger on larger screens */
 @media (min-width: 769px) {
-  .hamburger {
+  #hamburger {
     display: none;
   }
 }
