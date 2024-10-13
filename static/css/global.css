@@ -136,7 +136,6 @@ footer {
   font-weight: 400;
 }
 
-/* Responsive Navbar - Media Query for smaller screens */
 @media (max-width: 768px) {
   .navbar-left, .navbar-right {
     display: none;
@@ -153,5 +152,28 @@ footer {
 @media (min-width: 769px) {
   #hamburger {
     display: none;
+  }
+}
+
+@media (max-width: 450px) {
+  nav h2{
+    font-size: 1.2rem;
+  }
+
+  #hamburger {
+    font-size: 1.4rem;
+  }
+
+  .footer-title {
+    font-size: 1rem;
+  }
+  
+  .footer-logo img {
+    margin: 15px 0;
+  }
+  
+  .contact-info p {
+    font-size: 0.8rem;
+    font-weight: 400;
   }
 }

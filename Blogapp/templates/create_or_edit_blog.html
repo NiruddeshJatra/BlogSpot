@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block content %}
-  <link rel="stylesheet" href="{% static 'css/create_blog.css' %}">
+  <link rel="stylesheet" href="{% static 'css/create_or_edit_blog.css' %}">
   
   <div class="form-container">
     <h2 class="form-heading">{% if blog %}Edit{% else %}Create{% endif %} a Blog Post</h2>
@@ -18,10 +18,12 @@
       </div>
       <div class="form-group">
         <label for="content">Content</label>
-        <textarea class="form-control" id="content" name="content" rows="8" required>{{ blog.content }}</textarea>
+        <textarea class="form-control" id="content" name="content" rows="7" required>{{ blog.content }}</textarea>
       </div>
-      <button type="submit" name="status" value="draft" class="submit-btn">Save as Draft</button>
-      <button type="submit" name="status" value="submitted" class="submit-btn">{% if blog %}Update Blog{% else %}Create Blog{% endif %}</button>
+      <div class="form-actions">
+        <button type="submit" name="status" value="draft">Save as Draft</button>
+        <button type="submit" name="status" value="submitted">{% if blog %}Update Blog{% else %}Create Blog{% endif %}</button>
+      </div>
     </form>  
   </div>
 {% endblock %}
