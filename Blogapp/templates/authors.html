@@ -23,7 +23,7 @@
         {% for author in authors %}
           <tr>
             <td><a href="{% url 'blogapp:profile' username=author.author.username %}">{{ author.author.username }}</a></td>
-            <td>{{ author.author.first_name }}&nbsp;{{ author.author.last_name }}</td>
+            <td>{{ author.author.first_name }} {{ author.author.last_name }}</td>
             <td>{{ author.about }}</td>
             <td>{{ author.blog_count }}</td>
           </tr>
