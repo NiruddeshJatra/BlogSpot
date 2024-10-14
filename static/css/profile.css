@@ -2,7 +2,7 @@
   max-width: 900px;
   margin: 40px auto;
   padding: 20px;
-  background: radial-gradient(circle at 50% 100%, #1a2a6c, #16235b, #0d1b43, #020413); /* Gradient from the bottom */
+  background: radial-gradient(circle at 50% 100%, #1a2a6c, #16235b, #0d1b43, #020413);
   border-radius: 10px;
   color: azure;
   box-shadow: 0 8px 16px rgba(10, 9, 40, 0.836);
@@ -14,12 +14,12 @@
 }
 
 .profile-pic {
-  width: 150px; /* Set the width and height according to your preference */
+  width: 150px;
   height: 150px;
-  border-radius: 50%; /* This creates the circular shape */
-  object-fit: cover; /* Ensures the image fills the circle without stretching */
-  border: 3px solid #b5e7e7; /* Optional: adds a border around the image */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: adds a shadow for effect */
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #b5e7e7;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Blog Status Tabs Styling */

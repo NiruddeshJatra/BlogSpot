@@ -9,7 +9,7 @@
 
 /* Blog card styling */
 .blog-card {
-  padding: 7% 10%;
+  padding: 15px 22px;
   border-radius: 1.25rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   height: clamp(150px, 25vh, 200px);
@@ -26,6 +26,10 @@
       )
       border-box;
   transition: transform 0.3s ease-in-out, box-shadow 0.3s;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .blog-card:hover {
@@ -48,7 +52,7 @@
   font-size: 1.2rem;
   margin-bottom: 10px;
   color: #b5e7e7;
-  overflow-x: hidden;
+  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -65,10 +69,10 @@
   word-spacing: 0.09em;
   font-size: 0.8rem;
   color: #f1f0e2;
-  line-height: 1.6em;
-  height: 4.8em;
+  max-height: 4.8em;
   overflow: hidden;
   text-overflow: ellipsis;
+  line-clamp: 3;
 }
 
 /* Pagination styling */
@@ -101,4 +105,42 @@
   border-radius: 5px;
 }
 
-/*=============== BREAKPOINTS ===============*/
+@media (max-width: 809px) {
+  .blog-card {
+    padding: 12px 18px;
+  }
+
+  .blog-title {
+    font-size: 1.05rem;
+    margin-bottom: 9px;
+  }
+  
+  .blog-author {
+    font-size: 0.7rem;
+    margin-bottom: 12px;
+  }
+  
+  .blog-preview {
+    font-size: 0.73rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .blog-card {
+    padding: 10px 15px;
+  }
+
+  .blog-title {
+    font-size: 1rem;
+    margin-bottom: 8px;
+  }
+  
+  .blog-author {
+    font-size: 0.68rem;
+    margin-bottom: 10px;
+  }
+  
+  .blog-preview {
+    font-size: 0.7rem;
+  }
+}

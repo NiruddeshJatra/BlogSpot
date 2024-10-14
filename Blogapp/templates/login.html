@@ -6,14 +6,29 @@
 {% endblock %}
 
 {% block content %}
-  <link rel="stylesheet" href="{% static 'css/login.css' %}">
+  <link rel="stylesheet" href="{% static 'css/forms.css' %}">
 
-  <div class="login-container">
-    <h2>Login</h2>
+  <div class="form-container">
+    <h2 class="form-heading">Login</h2>
+
     <form method="POST" action="{% url 'blogapp:login' %}">
       {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit">Login</button>
+      {% for field in form %}
+        <div class="form-group">
+          {{ field.label_tag }}
+          {{ field }}
+        </div>
+      {% endfor %}
+      {% if messages %}
+          <div class="errors">
+            {% for message in messages %}
+              {{ message }}
+            {% endfor %}
+          </div>
+        {% endif %}
+      <div class="btn-group">
+        <button type="submit">Login</button>
+      </div>
     </form>
   </div>
 {% endblock %}
