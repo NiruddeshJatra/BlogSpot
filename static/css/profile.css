@@ -1,143 +1,156 @@
 .profile-container {
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 20px;
-  background: radial-gradient(circle at 50% 100%, #1a2a6c, #16235b, #0d1b43, #020413);
+  max-width: 800px;
+  margin: 30px auto;
+  padding: clamp(40px, 5vw, 60px) clamp(20px, 6vw, 70px);
+  background: radial-gradient(circle, #1a2a6c, #16235b, #0d1b43, #020413);
   border-radius: 10px;
   color: azure;
   box-shadow: 0 8px 16px rgba(10, 9, 40, 0.836);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 .profile-details {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.profile-details h2 {
+  font-size: clamp(1rem, 2.2vw, 1.4rem)
+}
+
+.profile-details p {
+  font-size: clamp(0.8rem, 1.9vw, 1rem)
 }
 
 .profile-pic {
-  width: 150px;
-  height: 150px;
+  width: clamp(100px, 15vw, 150px);
+  height: clamp(100px, 15vw, 150px);
   border-radius: 50%;
   object-fit: cover;
   border: 3px solid #b5e7e7;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Blog Status Tabs Styling */
+.user-blog-heading {
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  margin-top: clamp(30px, 5vw, 70px);
+  padding-left: clamp(10px, 2vw, 20px);
+  color: rgb(27, 224, 224);
+}
+
 .blog-status-tabs {
   display: flex;
   justify-content: center;
-  gap: 20px; /* Space between tabs */
-  margin: 20px 0;
+  gap: clamp(5px, 3vw, 50px);
+  margin: clamp(10px, 4vw, 30px);
 }
 
-.blog-status-tabs .tab {
+.blog-status-tabs a {
+  padding: 0;
+  margin: 0;
+  display: block;
   text-decoration: none;
-  padding: 10px 20px;
   color: grey;
-  font-size: 1rem;
+  font-size: clamp(0.7rem, 1.5vw, 1rem);
   border: none;
-  border-bottom: 2px solid azure; /* Bottom border */
+  border-bottom: 2px solid azure;
   transition: color 0.3s, border-bottom 0.3s;
   cursor: pointer;
 }
 
-/* Active Tab - Remove bottom border */
-.blog-status-tabs .tab.active {
+.blog-status-tabs a.active {
   border-bottom: 2px solid rgb(19, 172, 211);
-  color:rgb(0, 213, 255); /* Highlight active tab */
+  color: rgb(0, 213, 255);
 }
 
-/* Hover effect */
-.blog-status-tabs .tab:hover {
+.blog-status-tabs a:hover {
   color: rgb(20, 208, 225);
   border-bottom: 2px solid rgb(19, 172, 211);
 }
 
-.user-blog-heading {
-  margin-top: 80px;
-  margin-bottom: 25px;
-  padding-left: 25px;
-}
-
 .blog-tiles {
   display: flex;
-  flex-direction: column; /* Stack tiles vertically */
-  gap: 20px; /* Space between the tiles */
+  flex-direction: column;
+  gap: clamp(10px, 3vw, 20px);
 }
 
 .blog-tile {
-  flex: 1; /* Allow the tile to take full width */
+  flex: 1;
   position: relative;
-  background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent background for tiles */
-  border-radius: 8px; /* Rounded corners */
-  padding: 10px; /* Space inside the tile */
-  color: azure; /* Text color */
-  text-align: center; /* Center-align text */
-  transition: transform 0.3s, box-shadow 0.3s; /* Smooth hover effects */
-  cursor: pointer; /* Cursor pointer for clickable tiles */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+  background: radial-gradient(circle, #17276b, #172156, #161942);
+  border-radius: 8px;
+  padding: clamp(15px, 2.5vw, 25px);
+  color: azure;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .blog-tile:hover {
-  transform: translateY(-5px); /* Lift effect on hover */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Darker shadow on hover */
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
 .blog-title {
-  font-size: 1.2rem; /* Font size for the blog title */
-  margin: 5px 0px; /* Margin below the title */
+  font-size: clamp(0.7rem, 1.8vw, 1.2rem);
+  margin-bottom: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: center;
+  max-width: calc(100% - 70px);
 }
 
 .blog-date {
-  font-size: 0.9rem; /* Smaller font for the date */
-  color: #b5e7e7; /* Date text color */
+  font-size: clamp(0.55rem, 1.2vw, 0.9rem);
+  color: #b5e7e7;
+  max-width: calc(100% - 70px);
 }
 
 .blog-actions {
-  position: absolute; /* Position absolutely within the tile */
-  top: 20px; /* Align actions near the top */
-  right: 15px; /* Align actions to the right side of the tile */
+  position: absolute;
+  top: 15px;
+  right: 20px;
   display: flex;
-  flex-direction: column; /* Stack links vertically */
-  gap: 10px; /* Space between links */
+  flex-direction: column;
+  gap: clamp(1px, 0.5vw, 10px);
 }
 
 .blog-actions a, 
 .blog-actions button {
-  font-size: 0.9rem; /* Adjust font size for consistency */
-  text-decoration: none; /* Remove underline for links */
-  background: none; /* Remove default button background */
-  padding: 5px 10px; /* Add some padding for spacing */
-  cursor: pointer; /* Show pointer on hover */
-  transition: color 0.3s, border 0.3s; /* Smooth hover effect */
+  font-size: clamp(0.5rem, 1.2vw, 0.7rem);
+  text-decoration: none;
+  background: none;
+  padding: clamp(1px, 0.3vw, 8px) clamp(9px, 1vw, 30px);
+  cursor: pointer;
+  transition: color 0.3s, border 0.3s;
 }
 
-/* Edit link styling */
 .edit-link {
   border: 1px solid #fb7c22;
   border-radius: 5px;
-  color: #fb7c22; /* Orange for Edit button */
+  color: #fb7c22;
 }
 
-/* Delete link styling */
 .delete-link {
   border: 1px solid #ad0707;
   border-radius: 5px;
-  color: #ad0707; /* Red for Delete button */
+  color: #ad0707;
 }
 
-/* Hover effect */
 .edit-link:hover, .delete-link:hover {
-  opacity: 0.9; /* Slightly transparent on hover */
-  color: white; /* Change text color on hover */
+  opacity: 0.9;
+  color: white;
 }
 
-/* Specific hover effect for Edit */
 .edit-link:hover {
-  background-color: #fb7c22; /* Orange background on hover for Edit */
+  border: none;
+  background-color: #fb7c22;
 }
 
-/* Specific hover effect for Delete */
 .delete-link:hover {
-  background-color: #ad0707; /* Red background on hover for Delete */
+  border: none;
+  background-color: #ad0707;
 }
