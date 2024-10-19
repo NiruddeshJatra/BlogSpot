@@ -76,6 +76,16 @@
     <!-- Main Content -->
     <main class="main-content">{% block content %} {% endblock %}</main>
 
+    <!-- Notification Bell -->
+    {% if user.is_authenticated %}
+    <div class="notification-container">
+      <div class="notification-button">
+        <span class="notification-count">{{ notification_count }}</span>
+        <i class="fas fa-bell"></i>
+      </div>
+    </div>
+    {% endif %}
+    
     <!-- Footer -->
     <footer>
       <div class="footer-content">

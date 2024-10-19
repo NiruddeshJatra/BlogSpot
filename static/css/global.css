@@ -108,6 +108,47 @@ main {
   padding: 2rem 10vw;
 }
 
+/* Notification Bell */
+.notification-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.notification-button {
+  background-color: #ff6b6b;
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.notification-button i {
+  font-size: 24px;
+}
+
+.notification-count {
+  background-color: #fff;
+  color: #ff6b6b;
+  font-size: 14px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* Footer */
 footer {
   background-color: #090626;

@@ -95,3 +95,10 @@ def delete_blog(request, slug):
   blog = get_object_or_404(Blog, slug=slug, author=request.user)
   blog.delete()
   return redirect("blogapp:profile", username=request.user.username)
+
+
+def notification_count(request):
+  if request.user.is_authenticated:
+    notifications = Blog.objects.filter(author=request.user, status__in=['reviewed', 'published', 'rejected']).count()
+    return {'notification_count': notifications}
+  return {'notification_count': 0}
