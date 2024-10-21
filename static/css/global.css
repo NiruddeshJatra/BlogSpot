@@ -82,6 +82,10 @@ nav h2 {
   top: 12px;
 }
 
+#hamburger:hover {
+  color: rgb(20, 208, 225);
+}
+
 /* Dropdown Menu for Small Screens */
 #dropdown-menu {
   display: none;
@@ -99,6 +103,10 @@ nav h2 {
   letter-spacing: 0.1em;
   margin-bottom: 15px;
   margin-left: 30px;
+}
+
+#dropdown-menu a:hover, #dropdown-menu button:hover {
+  color: rgb(20, 208, 225);
 }
 
 /* Main Content */
