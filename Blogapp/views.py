@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Blog, Profile
+from .models import Blog, Profile, Notification
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
@@ -97,8 +99,11 @@ def delete_blog(request, slug):
   return redirect("blogapp:profile", username=request.user.username)
 
 
-def notification_count(request):
-  if request.user.is_authenticated:
-    notifications = Blog.objects.filter(author=request.user, status__in=['reviewed', 'published', 'rejected']).count()
-    return {'notification_count': notifications}
-  return {'notification_count': 0}
+@login_required
+@csrf_exempt
+def mark_notifications_read(request):
+  if request.method == "POST":
+    Notification.objects.filter(user=request.user, is_read=False).update(is_read=True)
+    return JsonResponse({"success": True})
+  
+  

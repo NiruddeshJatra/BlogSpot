@@ -11,6 +11,7 @@
     />
     <meta name="author" content="niruddesh jatra" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="{% static 'css/global.css' %}" />
     <link rel="icon" href="{% static 'images/logo.ico' %}" />
   </head>
@@ -21,7 +22,9 @@
         <a href="{% url 'blogapp:home' %}" class="navbar-link">Home</a>
         <a href="{% url 'blogapp:authors' %}" class="navbar-link">Authors</a>
         {% if user.is_authenticated %}
-        <a href="{% url 'blogapp:create_blog' %}" class="navbar-link">Create Blog</a>
+        <a href="{% url 'blogapp:create_blog' %}" class="navbar-link"
+          >Create Blog</a
+        >
         {% endif %}
       </div>
 
@@ -57,7 +60,9 @@
         <a href="{% url 'blogapp:home' %}" class="navbar-link">Home</a>
         <a href="{% url 'blogapp:authors' %}" class="navbar-link">Authors</a>
         {% if user.is_authenticated %}
-        <a href="{% url 'blogapp:create_blog' %}" class="navbar-link">Create Blog</a>
+        <a href="{% url 'blogapp:create_blog' %}" class="navbar-link"
+          >Create Blog</a
+        >
         {% endif %} {% if user.is_authenticated %}
         <a href="{% url 'blogapp:profile' user.username %}" class="navbar-link"
           >Profile</a
@@ -83,6 +88,22 @@
         <span class="notification-count">{{ notification_count }}</span>
         <i class="fas fa-bell"></i>
       </div>
+      <div
+        id="notification-panel"
+        class="notification-panel"
+        style="display: none"
+      >
+        {% for notification in user_notifications %}
+        <div class="notification-message">
+          <p>
+            Your blog - {{ notification.blog.title }} has been {{
+            notification.get_status_display }}
+          </p>
+        </div>
+        {% empty %}
+        <p>No new notifications.</p>
+        {% endfor %}
+      </div>
     </div>
     {% endif %}
 
@@ -91,13 +112,13 @@
       <div class="footer-content">
         <p class="footer-title">BlogSpot - Unburdening Your Mind</p>
         <div class="footer-logo">
-          <img src="{% static 'images/logo.png' %}" alt="Logo" width="80"/>
+          <img src="{% static 'images/logo.png' %}" alt="Logo" width="80" />
         </div>
         <div class="contact-info">
           <h3>Contact</h3>
           <p>
-            Email:<a href="mailto:nasifulalam1212@gmail.com" target="_blank"
-              >&nbsp;nasifulalam1212@gmail.com</a
+            Email:<a href="mailto:work.nj3515@gmail.com" target="_blank"
+              >&nbsp;work.nj3515@gmail.com</a
             >
           </p>
           <p>
@@ -122,14 +143,43 @@
         const isLoginPage = window.location.pathname === "/login/";
         if (!isLoginPage) {
           if (
-              !urlParams.has("screen_size") ||
-              urlParams.get("screen_size") !== screenSize
+            !urlParams.has("screen_size") ||
+            urlParams.get("screen_size") !== screenSize
           ) {
-              urlParams.set("screen_size", screenSize);
-              window.location.search = urlParams.toString();
+            urlParams.set("screen_size", screenSize);
+            window.location.search = urlParams.toString();
           }
         }
       });
+
+      document
+        .getElementById("notification-bell")
+        .addEventListener("click", function () {
+          const panel = document.getElementById("notification-panel");
+          if (panel.style.display === "none") {
+            panel.style.display = "block";
+            markNotificationsAsRead(); // Call function to mark notifications as read
+          } else {
+            panel.style.display = "none";
+          }
+        });
+
+      // AJAX call to mark notifications as read
+      function markNotificationsAsRead() {
+        fetch("{% url 'blogapp:mark_notifications_read' %}", {
+          method: "POST",
+          headers: {
+            "X-CSRFToken": "{{ csrf_token }}",
+            "Content-Type": "application/json",
+          },
+        }).then((response) => {
+          if (response.ok) {
+            // Hide notification count
+            document.querySelector(".notification-count").style.display =
+              "none";
+          }
+        });
+      }
     </script>
   </body>
 </html>

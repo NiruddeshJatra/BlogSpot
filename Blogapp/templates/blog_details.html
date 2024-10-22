@@ -18,9 +18,13 @@
       >by {{ blog.author.username }}</a
     >
     |
-    <span class="date">Published on {{ blog.created_at|date:"F j, Y" }}</span>
+    <span class="date">
+      Published on {{ blog.created_at|date:"F j, Y" }}
+    </span>
   </p>
-  <div class="blog-content">{{ blog.content|safe|linebreaks }}</div>
+  <div class="blog-content">
+    {{ blog.content|safe|linebreaks }}
+  </div>
   {% if user.is_authenticated and user == blog.author %}
   <div class="blog-actions">
     <a href="{% url 'blogapp:edit_blog' slug=blog.slug %}" class="edit-link"

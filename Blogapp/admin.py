@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
-from .models import Blog, Profile
+from .models import Blog, Profile, Notification
 
 
 # Register your models here.
@@ -36,6 +36,15 @@ class BlogAdmin(admin.ModelAdmin):
 
 	publish_blogs.short_description = "Publish selected blogs"
 	reject_blogs.short_description = "Reject selected blogs"
+	
+	def save_model(self, request, obj, form, change):
+		if 'status' in form.changed_data:
+			Notification.objects.create(
+				user=obj.author,
+				blog=obj,
+				status=obj.status
+			)
+		super().save_model(request, obj, form, change)
 
 admin.site.register(Blog, BlogAdmin)
 
