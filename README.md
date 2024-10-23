@@ -60,13 +60,13 @@ BlogSpot is a web application that allows users to post, read, and manage blogs.
 
 ## Screenshots
 
-![Home Page](static\screenshots\home.png)
-![Home Page Logged In](static\screenshots\home_logged_in.png)
-![Blog Details Page](static\screenshots\blog_details.png)
-![Profile Page](static\screenshots\profile.png)
-![Authors Page](static\screenshots\authors.png)
-![Create Blog Page](static\screenshots\create_blog.png)
-![Register Page](static\screenshots\register.png)
+![Home Page](static/screenshots/home.png)
+![Home Page Logged In](static/screenshots/home_logged_in.png)
+![Blog Details Page](static/screenshots/blog_details.png)
+![Profile Page](static/screenshots/profile.png)
+![Authors Page](static/screenshots/authors.png)
+![Create Blog Page](static/screenshots/create_blog.png)
+![Register Page](static/screenshots/register.png)
 
 ## Setup Instructions
 
