@@ -1,7 +1,3 @@
-Here's a curated README file for your BlogSpot project based on the provided directory structure and code snippets:
-
----
-
 # BlogSpot
 
 BlogSpot is a web application that allows users to post, read, and manage blogs. It provides a platform for users to share their thoughts and unburden their minds. The application features user authentication, profile management, and a notification system for blog status updates.
