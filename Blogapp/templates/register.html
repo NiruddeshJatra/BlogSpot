@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  BlogSpot - Register Profile
+{% endblock %}
+
+{% block content %}
+  <link rel="stylesheet" href="{% static 'css/forms.css' %}">
+
+  <div class="form-container">
+    <h2 class="form-heading">Register</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      {% for field in form %}
+      <div class="form-group">
+        {{ field.label_tag }}
+        {{ field }}
+        {% if field.errors %}
+        <div class="errors">
+          {{ field.errors }}
+        </div>
+        {% endif %}
+      </div>
+      {% endfor %}
+      <div class="btn-group">
+        <button type="submit">Register</button>
+      </div>
+    </form>
+  </div>
+{% endblock %}

@@ -1,0 +1,188 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>{% block title %} {% endblock %}</title>
+    <meta
+      name="description"
+      content="BlogSpot - a web application where you can unburden your mind by posting and reading blogs."
+    />
+    <meta name="author" content="niruddesh jatra" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/global.css' %}" />
+    <link rel="icon" href="{% static 'images/logo.ico' %}" />
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav>
+      <div class="navbar-left">
+        <a href="{% url 'blogapp:home' %}" class="navbar-link">Home</a>
+        <a href="{% url 'blogapp:authors' %}" class="navbar-link">Authors</a>
+        {% if user.is_authenticated %}
+        <a href="{% url 'blogapp:create_blog' %}" class="navbar-link"
+          >Create Blog</a
+        >
+        {% endif %}
+      </div>
+
+      <h2>BlogSpot</h2>
+
+      <div class="navbar-right">
+        {% if user.is_authenticated %}
+        <a href="{% url 'blogapp:profile' user.username %}" class="navbar-link"
+          >Profile</a
+        >
+        <form
+          method="POST"
+          action="{% url 'blogapp:logout' %}"
+          style="display: inline"
+        >
+          {% csrf_token %}
+          <button type="submit" class="navbar-link">Logout</button>
+        </form>
+        {% else %}
+        <a href="{% url 'blogapp:login' %}" class="navbar-link">Login</a>
+        <a href="{% url 'blogapp:register' %}" class="navbar-link">Register</a>
+        {% endif %}
+      </div>
+
+      <!-- Hamburger menu icon -->
+      <button class="navbar-link" id="hamburger" onclick="toggleMenu()">
+        &#9776;
+        <!-- This is the hamburger icon -->
+      </button>
+
+      <!-- Dropdown Menu for Small Screens -->
+      <div id="dropdown-menu">
+        <a href="{% url 'blogapp:home' %}" class="navbar-link">Home</a>
+        <a href="{% url 'blogapp:authors' %}" class="navbar-link">Authors</a>
+        {% if user.is_authenticated %}
+        <a href="{% url 'blogapp:create_blog' %}" class="navbar-link"
+          >Create Blog</a
+        >
+        {% endif %} {% if user.is_authenticated %}
+        <a href="{% url 'blogapp:profile' user.username %}" class="navbar-link"
+          >Profile</a
+        >
+        <form method="POST" action="{% url 'blogapp:logout' %}">
+          {% csrf_token %}
+          <button type="submit" class="navbar-link">Logout</button>
+        </form>
+        {% else %}
+        <a href="{% url 'blogapp:login' %}" class="navbar-link">Login</a>
+        <a href="{% url 'blogapp:register' %}" class="navbar-link">Register</a>
+        {% endif %}
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">{% block content %} {% endblock %}</main>
+
+    <!-- Notification Bell -->
+    {% if user.is_authenticated %}
+    <div class="notification-container">
+      <div class="notification-button">
+        <span class="notification-count">{{ notification_count }}</span>
+        <i class="fas fa-bell"></i>
+      </div>
+      <div
+        id="notification-panel"
+        class="notification-panel"
+        style="display: none"
+      >
+        {% for notification in user_notifications %}
+        <div class="notification-message">
+          <p>
+            Your blog - {{ notification.blog.title }} has been {{
+            notification.get_status_display }}
+          </p>
+        </div>
+        {% empty %}
+        <p>No new notifications.</p>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-content">
+        <p class="footer-title">BlogSpot - Unburdening Your Mind</p>
+        <div class="footer-logo">
+          <img src="{% static 'images/logo.png' %}" alt="Logo" width="80" />
+        </div>
+        <div class="contact-info">
+          <h3>Contact</h3>
+          <p>
+            Email:<a href="mailto:work.nj3515@gmail.com" target="_blank"
+              >&nbsp;work.nj3515@gmail.com</a
+            >
+          </p>
+          <p>
+            Phone:<a href="tel:+801626181662" target="_blank"
+              >&nbsp;+801626181662</a
+            >
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+
+      function toggleMenu() {
+        var dropdown = document.getElementById("dropdown-menu");
+        dropdown.style.display =
+          dropdown.style.display === "flex" ? "none" : "flex";
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const screenSize = window.innerWidth <= 768 ? "small" : "large";
+        const urlParams = new URLSearchParams(window.location.search);
+        const isLoginPage = window.location.pathname === "/login/";
+        if (!isLoginPage) {
+          if (
+            !urlParams.has("screen_size") ||
+            urlParams.get("screen_size") !== screenSize
+          ) {
+            urlParams.set("screen_size", screenSize);
+            window.location.search = urlParams.toString();
+          }
+        }
+      });
+
+      document
+        .getElementById("notification-bell")
+        .addEventListener("click", function () {
+          const panel = document.getElementById("notification-panel");
+          if (panel.style.display === "none") {
+            panel.style.display = "block";
+            markNotificationsAsRead(); // Call function to mark notifications as read
+          } else {
+            panel.style.display = "none";
+          }
+        });
+
+      // AJAX call to mark notifications as read
+      function markNotificationsAsRead() {
+        fetch("{% url 'blogapp:mark_notifications_read' %}", {
+          method: "POST",
+          headers: {
+            "X-CSRFToken": "{{ csrf_token }}",
+            "Content-Type": "application/json",
+          },
+        }).then((response) => {
+          if (response.ok) {
+            // Hide notification count
+            document.querySelector(".notification-count").style.display =
+              "none";
+          }
+        });
+      }
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
+  </body>
+</html>

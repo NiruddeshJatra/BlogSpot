@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  BlogSpot - {% if blog %}Edit Blog {% else %}Create Blog{% endif %}
+{% endblock %}
+
+{% block content %}
+  <link rel="stylesheet" href="{% static 'css/forms.css' %}">
+  
+  <div class="form-container">
+    <h2 class="form-heading">{% if blog %}Edit{% else %}Create{% endif %} a Blog Post</h2>
+
+    <form method="POST" action="{% if blog %}{% url 'blogapp:edit_blog' slug=blog.slug %}{% else %}{% url 'blogapp:create_blog' %}{% endif %}">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="title">Blog Title</label>
+        <input type="text" class="form-control" id="title" name="title" value="{{ blog.title }}" required>
+      </div>
+      <div class="form-group">
+        <label for="content">Content</label>
+        <textarea class="form-control" id="content" name="content" rows="7" required>{{ blog.content }}</textarea>
+      </div>
+      <div class="btn-group">
+        <button type="submit" name="status" value="draft">Save as Draft</button>
+        <button type="submit" name="status" value="submitted">{% if blog %}Update Blog{% else %}Create Blog{% endif %}</button>
+      </div>
+    </form>  
+  </div>
+{% endblock %}
