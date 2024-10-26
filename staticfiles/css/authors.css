@@ -1,0 +1,104 @@
+.authors-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 1000px;
+  margin: 30px auto;
+  padding: 60px 60px;
+  color: azure;
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  letter-spacing: 0.05rem;
+  margin: 20px 0;
+  background-color: rgba(13, 13, 43, 0.9);
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 1, 15, 0.686);
+}
+
+thead {
+  background-color: #132a4b;
+}
+
+th, td {
+  text-align: center;
+  color: azure;
+  padding: 1em;
+}
+
+th {
+  font-weight: 600;
+  border-bottom: 2px solid #1a1a40;
+}
+
+th:first-child {
+  border-top-left-radius: 15px;
+}
+
+th:last-child {
+  border-top-right-radius: 15px;
+}
+
+tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 15px; 
+}
+
+tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 15px; 
+}
+
+tbody tr {
+  border-bottom: 1px solid #1a1a40;
+}
+
+table th, table td {
+  border-right: 1px solid #1a1a40;
+}
+
+table th:last-child, table td:last-child {
+  border-right: none;
+}
+
+tbody tr:nth-child(even) {
+  background-color: rgba(31, 31, 75, 0.9);
+  transition: background-color 0.3s, transform 0.4s ease-in-out;
+}
+
+tbody tr:hover {
+  background: linear-gradient(135deg, rgba(20, 41, 100, 0.9), rgba(6, 6, 58, 0.8));
+  cursor: pointer;
+  transform: scale(1.01);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+tbody tr:hover td {
+  color: #fff;
+}
+
+td {
+  color: #b5e7e7;
+}
+
+a {
+  color:  #b2b2ff;
+}
+
+a:hover {
+  color: rgb(20, 208, 225);
+}
+
+@media (max-width: 768px) {
+  .authors-container {
+    padding: 40px 20px;
+    font-size: 0.9rem;
+  }
+  .authors-container h2 {
+    font-size: 1.4rem;
+  }
+  th, td{
+    font-size: 0.8rem;
+    padding: 0.9em 0.6em;
+  }
+}

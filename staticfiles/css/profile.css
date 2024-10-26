@@ -1,0 +1,156 @@
+.profile-container {
+  max-width: 800px;
+  margin: 30px auto;
+  padding: clamp(40px, 5vw, 60px) clamp(20px, 6vw, 70px);
+  background: radial-gradient(circle, #1a2a6c, #16235b, #0d1b43, #020413);
+  border-radius: 10px;
+  color: azure;
+  box-shadow: 0 8px 16px rgba(10, 9, 40, 0.836);
+}
+
+.profile-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.profile-details h2 {
+  font-size: clamp(1rem, 2.2vw, 1.4rem)
+}
+
+.profile-details p {
+  font-size: clamp(0.8rem, 1.9vw, 1rem)
+}
+
+.profile-pic {
+  width: clamp(100px, 15vw, 150px);
+  height: clamp(100px, 15vw, 150px);
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #b5e7e7;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.user-blog-heading {
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  margin-top: clamp(30px, 5vw, 70px);
+  padding-left: clamp(10px, 2vw, 20px);
+  color: rgb(27, 224, 224);
+}
+
+.blog-status-tabs {
+  display: flex;
+  justify-content: center;
+  gap: clamp(5px, 3vw, 50px);
+  margin: clamp(10px, 4vw, 30px);
+}
+
+.blog-status-tabs a {
+  padding: 0;
+  margin: 0;
+  display: block;
+  text-decoration: none;
+  color: grey;
+  font-size: clamp(0.7rem, 1.5vw, 1rem);
+  border: none;
+  border-bottom: 2px solid azure;
+  transition: color 0.3s, border-bottom 0.3s;
+  cursor: pointer;
+}
+
+.blog-status-tabs a.active {
+  border-bottom: 2px solid rgb(19, 172, 211);
+  color: rgb(0, 213, 255);
+}
+
+.blog-status-tabs a:hover {
+  color: rgb(20, 208, 225);
+  border-bottom: 2px solid rgb(19, 172, 211);
+}
+
+.blog-tiles {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(10px, 3vw, 20px);
+}
+
+.blog-tile {
+  flex: 1;
+  position: relative;
+  background: radial-gradient(circle, #17276b, #172156, #161942);
+  border-radius: 8px;
+  padding: clamp(15px, 2.5vw, 25px);
+  color: azure;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.blog-tile:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.blog-title {
+  font-size: clamp(0.7rem, 1.8vw, 1.2rem);
+  margin-bottom: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: center;
+  max-width: calc(100% - 70px);
+}
+
+.blog-date {
+  font-size: clamp(0.55rem, 1.2vw, 0.9rem);
+  color: #b5e7e7;
+  max-width: calc(100% - 70px);
+}
+
+.blog-actions {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1px, 0.5vw, 10px);
+}
+
+.blog-actions a, 
+.blog-actions button {
+  font-size: clamp(0.5rem, 1.2vw, 0.7rem);
+  text-decoration: none;
+  background: none;
+  padding: clamp(1px, 0.3vw, 8px) clamp(9px, 1vw, 30px);
+  cursor: pointer;
+  transition: color 0.3s, border 0.3s;
+}
+
+.edit-link {
+  border: 1px solid #fb7c22;
+  border-radius: 5px;
+  color: #fb7c22;
+}
+
+.delete-link {
+  border: 1px solid #ad0707;
+  border-radius: 5px;
+  color: #ad0707;
+}
+
+.edit-link:hover, .delete-link:hover {
+  opacity: 0.9;
+  color: white;
+}
+
+.edit-link:hover {
+  border: none;
+  background-color: #fb7c22;
+}
+
+.delete-link:hover {
+  border: none;
+  background-color: #ad0707;
+}
