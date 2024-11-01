@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@100..800&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap');
 
+@font-face {
+  font-family: 'Forte';
+  src: url('fonts/FORTE.TTF') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -65,7 +72,7 @@ nav {
 /* Navbar Title (Center) */
 nav h2 {
   font-size: 1.6rem;
-  font-family: 'Forte Regular';
+  font-family: 'Forte', sans-serif;
   letter-spacing: normal;
   color: rgb(225, 254, 254);
 }
