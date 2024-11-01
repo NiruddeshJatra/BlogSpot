@@ -13,10 +13,9 @@ class UserProfileForm(UserCreationForm):
     widget=forms.DateInput(
       attrs={
           'type': 'date',
-          'placeholder': 'DD-MM-YYYY',
+          'placeholder': 'YYYY-MM-DD',
       }
     ),
-    input_formats=['%d-%m-%Y'],
   )
   about = forms.CharField(widget=forms.Textarea, required=False)
   profilePic = forms.ImageField(required=False)
