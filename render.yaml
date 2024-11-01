@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: blogspot
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn blogspot.wsgi:application --preload --bind 0.0.0.0:8000"
+    envVars:
+      - key: DJANGO_SECRET_KEY
+        value: 'django-insecure-$gy5o^bh5s*mt&x$tvdtky66_mx11so1k1!88ylhke=berk5-e'
