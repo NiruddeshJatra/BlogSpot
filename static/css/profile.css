@@ -55,7 +55,7 @@
   color: grey;
   font-size: clamp(0.7rem, 1.5vw, 1rem);
   border: none;
-  border-bottom: 2px solid azure;
+  border-bottom: 2px solid grey;
   transition: color 0.3s, border-bottom 0.3s;
   cursor: pointer;
 }
