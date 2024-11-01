@@ -1,7 +1,7 @@
 .profile-container {
   max-width: 800px;
   margin: 30px auto;
-  padding: clamp(40px, 5vw, 60px) clamp(20px, 6vw, 70px);
+  padding: clamp(40px, 5vw, 60px) clamp(10px, 6vw, 70px);
   background: radial-gradient(circle, #1a2a6c, #16235b, #0d1b43, #020413);
   border-radius: 10px;
   color: azure;

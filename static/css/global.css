@@ -210,6 +210,10 @@ footer {
     font-size: 1.4rem;
   }
 
+  main {
+    padding: 2rem 1rem;
+  }
+
   .footer-title {
     font-size: 1rem;
   }
