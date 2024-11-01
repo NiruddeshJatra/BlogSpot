@@ -12,7 +12,7 @@ class Profile(models.Model):
     profilePic = models.ImageField(upload_to="profiles/", blank=True)
 
     def blog_count(self):
-        return Blog.objects.filter(author=self.author).count()
+        return Blog.objects.filter(author=self.author, status='published').count()
 
     blog_count.short_description = "Number of Blogs"
 
