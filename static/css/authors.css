@@ -102,3 +102,9 @@ a:hover {
     padding: 0.9em 0.6em;
   }
 }
+
+@media (max-width: 450px) {
+  th, td{
+    padding: 0.7em 0.4em;
+  }
+}
