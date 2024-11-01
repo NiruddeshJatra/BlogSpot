@@ -38,7 +38,7 @@
         {% endif %}
       </div>
 
-      <h2>BlogSpot</h2>
+      <a href="{% url 'blogapp:home' %}"><h2>BlogSpot</h2></a>
 
       <div class="navbar-right">
         {% if user.is_authenticated %}

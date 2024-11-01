@@ -77,6 +77,10 @@ nav h2 {
   color: rgb(225, 254, 254);
 }
 
+nav h2:hover {
+  color: rgb(20, 208, 225) !important;
+}
+
 /* Hamburger Button */
 #hamburger {
   background: none;

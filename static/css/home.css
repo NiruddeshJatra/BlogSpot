@@ -124,4 +124,19 @@
   .blog-preview {
     font-size: 0.75rem;
   }
+
+  .pagination {
+    margin-top: 30px;
+    font-size: 0.7rem;
+  }
+
+  .pagination a {
+    margin: 0 4px;
+    padding: 5px 10px;
+  }
+
+  .pagination .current {
+    margin: 0 4px;
+    padding: 5px 10px;
+  }
 }
