@@ -82,6 +82,22 @@ input:focus, textarea:focus {
   color: rgb(204, 0, 0);
 }
 
+.password-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.password-wrapper input {
+  flex: 1;
+}
+
+.toggle-password {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: 8px;
+}
+
 @media (max-width: 768px) {
   .form-container {
     margin: 30px auto;

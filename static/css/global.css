@@ -122,7 +122,7 @@ nav h2:hover {
 
 /* Main Content */
 main {
-  background: radial-gradient(circle, #1a2d77, #16235b, #030221);
+  background: radial-gradient(circle, #1a2d77, #16235b, #090e32);
   margin-top: 50px;
   padding: 2rem 10vw;
 }

@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@100..800&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap');
 
+@font-face {
+  font-family: 'Forte';
+  src: url('fonts/FORTE.TTF') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -65,9 +72,13 @@ nav {
 /* Navbar Title (Center) */
 nav h2 {
   font-size: 1.6rem;
-  font-family: 'Forte Regular';
+  font-family: 'Forte', sans-serif;
   letter-spacing: normal;
   color: rgb(225, 254, 254);
+}
+
+nav h2:hover {
+  color: rgb(20, 208, 225) !important;
 }
 
 /* Hamburger Button */
@@ -111,7 +122,7 @@ nav h2 {
 
 /* Main Content */
 main {
-  background: radial-gradient(circle, #1a2d77, #16235b, #000000);
+  background: radial-gradient(circle, #1a2d77, #16235b, #030221);
   margin-top: 50px;
   padding: 2rem 10vw;
 }
@@ -158,6 +169,7 @@ main {
 footer {
   background-color: #090626;
   color: white;
+  border-top: 1px solid rgb(17, 34, 89);
   padding: 35px 0;
   text-align: center;
 }
@@ -208,6 +220,10 @@ footer {
 
   #hamburger {
     font-size: 1.4rem;
+  }
+
+  main {
+    padding: 2rem 1rem;
   }
 
   .footer-title {

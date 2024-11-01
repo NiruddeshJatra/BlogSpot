@@ -16,7 +16,14 @@
       {% for field in form %}
       <div class="form-group">
         {{ field.label_tag }}
-        {{ field }}
+        {% if field.name == 'password1' or field.name == 'password2' %}
+          <div class="password-wrapper">
+            {{ field }}
+            <button type="button" class="toggle-password" onclick="togglePasswordVisibility(this)">👁️</button>
+          </div>
+        {% else %}
+          {{ field }}
+        {% endif %}
         {% if field.errors %}
         <div class="errors">
           {{ field.errors }}
@@ -29,4 +36,15 @@
       </div>
     </form>
   </div>
+
+  <script>
+    function togglePasswordVisibility(button) {
+      const passwordField = button.previousElementSibling; // Get the password input field
+      const isPasswordType = passwordField.type === "password"; // Check if it is a password field
+
+      // Toggle the type attribute and button icon/text
+      passwordField.type = isPasswordType ? "text" : "password";
+      button.textContent = isPasswordType ? "🙈" : "👁️"; // Change icon based on visibility
+    }
+  </script>
 {% endblock %}
