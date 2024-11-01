@@ -6,6 +6,7 @@
   margin: 30px auto;
   padding: 60px 60px;
   color: azure;
+  overflow-x: auto;
 }
 
 table {
@@ -16,6 +17,7 @@ table {
   background-color: rgba(13, 13, 43, 0.9);
   border-radius: 15px;
   box-shadow: 0 8px 16px rgba(0, 1, 15, 0.686);
+  min-width: 400px;
 }
 
 thead {
@@ -104,7 +106,12 @@ a:hover {
 }
 
 @media (max-width: 450px) {
+  .authors-container {
+    padding: 40px 15px;
+    font-size: 0.8rem;
+  }
+
   th, td{
-    padding: 0.7em 0.4em;
+    padding: 0.7em 0.5em;
   }
 }

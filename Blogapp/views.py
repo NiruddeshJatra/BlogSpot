@@ -13,7 +13,7 @@ from .forms import UserProfileForm, BlogForm
 # Create your views here.
 def home(request):
 	blogs = Blog.objects.filter(status='published').all()
-	per_page = 5 if request.GET.get('screen_size') == 'small' else 12
+	per_page = 10 if request.GET.get('screen_size') == 'small' else 12
 	paginator = Paginator(blogs, per_page)
 	page_number = request.GET.get('page')
 	page_obj = paginator.get_page(page_number)
