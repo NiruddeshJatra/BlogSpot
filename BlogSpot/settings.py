@@ -87,15 +87,8 @@ MESSAGE_TAGS = {
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'blogspot',
-        'USER': 'niruddesh_jatra',
-        'PASSWORD': 'Ld2DafnvKeUNodO0DBF4Z1o1CfrttNUi',
-        'HOST': 'dpg-csiehnt6l47c73fa2ke0-a.oregon-postgres.render.com',
-        'PORT': '5432',
-        'OPTIONS': {
-            'sslmode': 'require',
-        },
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -150,4 +143,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
-SESSION_EXPIRE_AT_BROWSER_CLOSE = True  # End session when the browser closes
