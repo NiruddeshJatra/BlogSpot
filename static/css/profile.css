@@ -35,6 +35,7 @@
 .user-blog-heading {
   font-size: clamp(0.9rem, 2vw, 1.1rem);
   margin-top: clamp(30px, 5vw, 70px);
+  margin-bottom: 10px;
   padding-left: clamp(10px, 2vw, 20px);
   color: rgb(27, 224, 224);
 }
@@ -78,6 +79,10 @@
 .blog-tile {
   flex: 1;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
   background: radial-gradient(circle, #17276b, #172156, #161942);
   border-radius: 8px;
   padding: clamp(15px, 2.5vw, 25px);
@@ -86,6 +91,23 @@
   transition: transform 0.3s, box-shadow 0.3s;
   cursor: pointer;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.blog-tile.no-actions {
+  justify-content: center;
+  align-items: center;
+}
+
+.blog-tile.no-actions a {
+  width: 100%; /* Ensure the link spans the full width */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.blog-title, .blog-date {
+  margin: 0;
+  text-align: center;
 }
 
 .blog-tile:hover {

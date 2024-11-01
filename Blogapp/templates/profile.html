@@ -45,7 +45,7 @@
   <div class="user-blogs">
     <div class="blog-tiles">
       {% for blog in blogs %}
-      <div class="blog-tile">
+      <div class="blog-tile {% if not user.is_authenticated or user != blog.author %}no-actions{% endif %}">
         <a href="{% url 'blogapp:blog_details' slug=blog.slug %}">
           <h4 class="blog-title">{{ blog.title }}</h4>
           <p class="blog-date">{{ blog.created_at|date:"F j, Y" }}</p>
