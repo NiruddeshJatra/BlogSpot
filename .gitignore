@@ -1,1 +1,4 @@
 /blogspot_venv/
+/data.yaml/
+/db.sqlite3/
+/vercel.json/

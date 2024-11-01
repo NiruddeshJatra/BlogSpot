@@ -8,7 +8,16 @@ class UserProfileForm(UserCreationForm):
   first_name = forms.CharField(max_length=30, required=True)
   last_name = forms.CharField(max_length=30, required=True)
   email = forms.EmailField(max_length=254, required=True)
-  birthdate = forms.DateField(required=False)
+  birthdate = forms.DateField(
+    required=False,
+    widget=forms.DateInput(
+      attrs={
+          'type': 'date',
+          'placeholder': 'DD-MM-YYYY',
+      }
+    ),
+    input_formats=['%d-%m-%Y'],
+  )
   about = forms.CharField(widget=forms.Textarea, required=False)
   profilePic = forms.ImageField(required=False)
 
@@ -21,6 +30,9 @@ class UserProfileForm(UserCreationForm):
       "email",
       "password1",
       "password2",
+      "birthdate",
+      "about",
+      "profilePic",
     ]
 
   def save(self, commit=True):
@@ -33,7 +45,7 @@ class UserProfileForm(UserCreationForm):
       user.save()
       Profile.objects.create(
         author=user,
-        birthdate=self.cleaned_data["birthdate"],
+        birthdate=self.cleaned_data.get("birthdate"),
         about=self.cleaned_data["about"],
         profilePic=self.cleaned_data.get("profilePic"),
       )
