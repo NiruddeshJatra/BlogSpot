@@ -5,7 +5,7 @@
   max-width: 1000px;
   margin: 30px auto;
   padding: 60px 60px;
-  color: azure;
+  color: white;
   overflow-x: auto;
 }
 
@@ -26,7 +26,7 @@ thead {
 
 th, td {
   text-align: center;
-  color: azure;
+  color: white;
   padding: 1em;
 }
 

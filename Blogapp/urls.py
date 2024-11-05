@@ -8,6 +8,7 @@ urlpatterns = [
   path('', views.home, name='home'),
   path('blog/<slug:slug>/', views.blog_details, name='blog_details'),
   path('profile/<str:username>/', views.profile, name='profile'),
+  path('edit_profile/', views.edit_profile, name='edit_profile'),
   path('authors/', views.authors, name='authors'),
   path('create/', views.create_or_edit_blog, name='create_blog'),
   path('delete/<slug:slug>/', views.delete_blog, name='delete_blog'),

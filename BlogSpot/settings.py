@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-$gy5o^bh5s*mt&x$tvdtky66_mx11so1k1!88ylhke=berk5-e
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -87,15 +87,8 @@ MESSAGE_TAGS = {
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'blogspot_maje',
-        'USER': 'niruddesh_jatra',
-        'PASSWORD': 't0WmKJy0xKMTAS0BVdfpakta3Mvt25R3',
-        'HOST': 'dpg-csige33tq21c73aip840-a.oregon-postgres.render.com',
-        'PORT': '5432',
-        'OPTIONS': {
-            'sslmode': 'require',
-        }
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -150,3 +143,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+# SECURE_SSL_REDIRECT = True
+# CSRF_COOKIE_SECURE = True
+# SESSION_COOKIE_SECURE = True

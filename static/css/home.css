@@ -15,13 +15,13 @@
   height: clamp(170px, 25vh, 200px);
   text-align: center;
   border: 4px solid transparent;
-  background: linear-gradient(rgb(15, 14, 42), rgb(15, 14, 42))
+  background: linear-gradient(#050929, #050929)
       padding-box,
     linear-gradient(
         135deg,
         rgb(113, 179, 244) 0%,
-        rgb(15, 14, 42),
-        rgb(15, 14, 42),
+        #050929,
+        #050929,
         rgb(61, 67, 222) 100%
       )
       border-box;
@@ -80,7 +80,7 @@
 .pagination {
   text-align: center;
   margin-top: 100px;
-  color: azure;
+  color: white;
 }
 
 .pagination a {

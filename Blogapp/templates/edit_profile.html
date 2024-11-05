@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+  Edit Profile
+{% endblock %}
+
+{% block content %}
+  <link rel="stylesheet" href="{% static 'css/forms.css' %}">
+  <div class="form-container">
+    <h2 class="form-heading">Edit Profile</h2>
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="form-group">
+        {{ form.as_p }}
+      </div>
+      <div class="btn-group">
+        <button type="submit">Save Changes</button>
+      </div>
+    </form>
+  </div>
+{% endblock %}

@@ -27,6 +27,11 @@
     <p><strong>Full Name:</strong> {{ profile_info.author.first_name }} {{ profile_info.author.last_name }}</p>
     <p><strong>Birthdate:</strong> {{ profile_info.birthdate }}</p>
     <p><strong>About:</strong> {{ profile_info.about }}</p>
+    {% if user.is_authenticated and user == profile_info.author %}
+      <div class="profile-actions">
+        <a href="{% url 'blogapp:edit_profile' %}" class="edit-link">Edit</a>
+      </div>
+    {% endif %}
   </div>
 
   <h3 class="user-blog-heading"><i><strong>&lt; {{ profile_info.author.username }}'s Blogs &gt;</strong></i></h3>

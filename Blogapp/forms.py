@@ -56,3 +56,9 @@ class BlogForm(forms.ModelForm):
   class Meta:
     model = Blog
     fields = ("title", "content")
+
+
+class ProfileEditForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['birthdate', 'about', 'profilePic']

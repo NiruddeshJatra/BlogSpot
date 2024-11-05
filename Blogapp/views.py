@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
-from .forms import UserProfileForm, BlogForm
+from .forms import UserProfileForm, BlogForm, ProfileEditForm
 
 
 # Create your views here.
@@ -56,6 +56,21 @@ def create_or_edit_blog(request, slug=None):
 		form = BlogForm(instance=blog)
 
 	return render(request, "create_or_edit_blog.html", {"form": form, "blog": blog})
+
+
+@login_required
+def edit_profile(request):
+    profile = get_object_or_404(Profile, author=request.user)
+    if request.method == "POST":
+        form = ProfileEditForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Profile updated successfully!")
+            return redirect('blogapp:profile', username=request.user.username)
+    else:
+        form = ProfileEditForm(instance=profile)
+
+    return render(request, 'edit_profile.html', {'form': form})
 
 
 def custom_login(request):

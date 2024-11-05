@@ -133,6 +133,15 @@
   gap: clamp(1px, 0.5vw, 10px);
 }
 
+.profile-actions a {
+  font-size: clamp(0.7rem, 1.4vw, 0.9rem);
+  text-decoration: none;
+  background: none;
+  padding: clamp(1px, 0.3vw, 8px) clamp(12px, 1.2vw, 30px);
+  cursor: pointer;
+  transition: color 0.3s, border 0.3s;
+}
+
 .blog-actions a, 
 .blog-actions button {
   font-size: clamp(0.5rem, 1.2vw, 0.7rem);
