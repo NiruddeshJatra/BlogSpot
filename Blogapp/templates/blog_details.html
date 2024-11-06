@@ -6,39 +6,105 @@
 {% endblock %} 
 
 {% block content %}
-<!-- Link to the custom CSS for blog details page -->
 <link rel="stylesheet" href="{% static 'css/blog_details.css' %}" />
 
 <div class="blog-details-container">
   <h1 class="blog-title">{{ blog.title }}</h1>
   <p class="blog-meta">
-    <a
-      class="author"
-      href="{% url 'blogapp:profile' username=blog.author.username %}"
-      >by {{ blog.author.username }}</a
-    >
+    <a class="author" href="{% url 'blogapp:profile' username=blog.author.username %}">by {{ blog.author.username }}</a>
     |
-    <span class="date">
-      Published on {{ blog.created_at|date:"F j, Y" }}
-    </span>
+    <span class="date">Published on {{ blog.created_at|date:"F j, Y" }}</span>
   </p>
-  <div class="blog-content">
-    {{ blog.content|safe|linebreaksbr }}
-  </div>
+  <div class="blog-content">{{ blog.content|safe|linebreaksbr }}</div>
+
   {% if user.is_authenticated and user == blog.author %}
   <div class="blog-actions">
-    <a href="{% url 'blogapp:edit_blog' slug=blog.slug %}" class="edit-link"
-      >Edit</a
-    >
-    <form
-      action="{% url 'blogapp:delete_blog' slug=blog.slug %}"
-      method="POST"
-      style="display: inline"
-    >
+    <a href="{% url 'blogapp:edit_blog' slug=blog.slug %}" class="edit-link">Edit</a>
+    <form action="{% url 'blogapp:delete_blog' slug=blog.slug %}" method="POST" style="display: inline">
       {% csrf_token %}
       <button type="submit" class="delete-link">Delete</button>
     </form>
   </div>
   {% endif %}
+
+  <div class="reaction-buttons">
+    <button class="react-button" data-reaction="love" onclick="handleReaction('love')">🩵 <span class="count" id="love-count">{{ love_count }}</span></button>
+    <button class="react-button" data-reaction="sad" onclick="handleReaction('sad')">🙄 <span class="count" id="sad-count">{{ sad_count }}</span></button>
+    <button class="react-button" data-reaction="support" onclick="handleReaction('support')">🤝 <span class="count" id="support-count">{{ support_count }}</span></button>
+  </div>
+
+  {% if user.is_authenticated %}
+  <div class="comment-form">
+    <h3>Add a Comment</h3>
+    <form method="POST" action="{% url 'blogapp:add_comment' blog.slug %}">
+      {% csrf_token %}
+      <div class="input-container">
+        <textarea name="content" required></textarea>
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+  {% endif %}
+
+  <div class="comments-section">
+    <h3>Comments</h3>
+    {% for comment in comments %}
+      <div class="comment">
+        <p><strong>{{ comment.user.username }}</strong> ({{ comment.created_at|date:"F j, Y H:i" }})</p>
+        <p>{{ comment.content }}</p>
+        <div class="reply-form">
+          {% if user.is_authenticated %}
+          <form method="POST" action="{% url 'blogapp:add_comment' blog.slug %}">
+            {% csrf_token %}
+            <div class="input-container">
+              <textarea name="content" placeholder="Reply..." required></textarea>
+              <input type="hidden" name="parent_id" value="{{ comment.id }}">
+              <button type="submit">Reply</button>
+            </div>
+          </form>
+          {% endif %}
+        </div>
+      </div>
+      <!-- Here you can render replies if needed -->
+      {% for reply in comment.replies.all %}
+        <div class="comment reply">
+          <p><strong>{{ reply.user.username }}</strong> ({{ reply.created_at|date:"F j, Y H:i" }})</p>
+          <p>{{ reply.content }}</p>
+        </div>
+      {% endfor %}
+    {% empty %}
+    <p>No comments yet.</p>
+    {% endfor %}
+  </div>
 </div>
+<script>
+  let lastReaction = null;
+
+  function handleReaction(reactionType) {
+      fetch("{% url 'blogapp:react_to_blog' slug=blog.slug %}", {
+          method: "POST",
+          headers: {
+              "X-CSRFToken": "{{ csrf_token }}",
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ reaction_type: reactionType })
+      })
+      .then(response => response.json())
+      .then(data => {
+          // Update counts
+          document.getElementById('love-count').textContent = data.counts.love;
+          document.getElementById('sad-count').textContent = data.counts.sad;
+          document.getElementById('support-count').textContent = data.counts.support;
+
+          // Animate clicked button
+          const button = document.querySelector(`.react-button[data-reaction='${reactionType}']`);
+          button.classList.add("animate-reaction");
+
+          // Reset the animation to prevent the button from staying large
+          setTimeout(() => button.classList.remove("animate-reaction"), 500);
+
+          lastReaction = reactionType;
+      });
+  }
+</script>
 {% endblock %}

@@ -90,7 +90,7 @@ nav h2:hover {
   cursor: pointer;
   position: absolute;
   left: 30px;
-  top: 12px;
+  top: 15px;
 }
 
 #hamburger:hover {
@@ -104,9 +104,9 @@ nav h2:hover {
   background: linear-gradient(to bottom, #090626, #1a2a6c);
   position: absolute;
   border-radius: 0px 2px 10px 2px;
-  top: 70px;
+  top: 65px;
   left: 0;
-  width: 37vw;
+  width: 45vw;
   z-index: 10;
 }
 
@@ -127,7 +127,7 @@ main {
   padding: 2rem 10vw;
 }
 
-/* Notification Bell */
+/* Notification Panel Container */
 .notification-container {
   position: fixed;
   bottom: 30px;
@@ -135,6 +135,7 @@ main {
   z-index: 1010;
 }
 
+/* Notification Bell Icon */
 .notification-button {
   background-color: #213754;
   width: 50px;
@@ -163,6 +164,68 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* Notification Panel Styles */
+.notification-panel {
+  display: none;
+  position: absolute;
+  bottom: 50px;
+  right: 0;
+  width: 300px;
+  max-height: 400px;
+  overflow-y: auto;
+  background-color: rgb(16, 16, 22);
+  border: 1px solid #073980;
+  border-radius: 5px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+/* Additional styling to ensure notification content appears clearly */
+.notification-panel:before {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  right: 15px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid rgb(28, 28, 75); /* Same as panel background */
+}
+
+/* Notification Message Styles */
+.notification-message {
+  padding: 15px;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 0.9rem;
+}
+
+.notification-message:last-child {
+  border-bottom: none;
+}
+
+.notification-message p {
+  margin: 0;
+  color: #efe9e9;
+}
+
+.notification-message a {
+  color: #1dabe3;
+  text-decoration: none;
+}
+
+.notification-message a:hover {
+  text-decoration: underline;
+}
+
+/* Empty Notification Message */
+.notification-panel p {
+  color: #c5c5c5;
+  padding: 10px;
+  text-align: center;
+  font-size: 0.9rem;
 }
 
 /* Footer */
@@ -194,6 +257,14 @@ footer {
   font-weight: 400;
 }
 
+
+/* Hide the hamburger on larger screens */
+@media (min-width: 769px) {
+  #hamburger {
+    display: none;
+  }
+}
+
 @media (max-width: 768px) {
   .navbar-left, .navbar-right {
     display: none;
@@ -202,17 +273,11 @@ footer {
   nav h2 {
     position: absolute;
     right: 40px;
-    top: 15px;
+    top: 18px;
     left: auto;
   }
 }
 
-/* Hide the hamburger on larger screens */
-@media (min-width: 769px) {
-  #hamburger {
-    display: none;
-  }
-}
 
 @media (max-width: 450px) {
   nav h2{

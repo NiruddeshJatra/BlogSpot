@@ -15,6 +15,11 @@
           <h3 class="blog-title">{{ blog.title }}</h3>
           <p class="blog-author">By {{ blog.author.username }}</p>
           <p class="blog-preview">{{ blog.content|striptags|truncatewords:20 }}</p>
+          <div class="reaction-buttons">
+            <button class="react-button">🩵 <span class="count" id="love-count">{{ blog.love_count }}</span></button>
+            <button class="react-button">🙄 <span class="count" id="sad-count">{{ blog.sad_count }}</span></button>
+            <button class="react-button">🤝 <span class="count" id="support-count">{{ blog.support_count }}</span></button>
+          </div>
         </article>
       </a>
     {% endfor %}

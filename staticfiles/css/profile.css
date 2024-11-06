@@ -4,7 +4,7 @@
   padding: clamp(40px, 5vw, 60px) clamp(10px, 6vw, 70px);
   background: radial-gradient(circle, #1a2a6c, #16235b, #0d1b43, #020413);
   border-radius: 10px;
-  color: azure;
+  color: rgb(255, 255, 255);
   box-shadow: 0 8px 16px rgba(10, 9, 40, 0.836);
 }
 
@@ -82,7 +82,7 @@
   background: radial-gradient(circle, #17276b, #172156, #161942);
   border-radius: 8px;
   padding: clamp(15px, 2.5vw, 25px);
-  color: azure;
+  color: rgb(255, 255, 255);
   text-align: center;
   transition: transform 0.3s, box-shadow 0.3s;
   cursor: pointer;

@@ -11,18 +11,26 @@
     />
     <meta name="author" content="niruddesh jatra" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
     <link rel="stylesheet" href="{% static 'css/global.css' %}" />
     <link rel="icon" href="{% static 'images/logo.ico' %}" />
 
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z7EB6GCWNN"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-Z7EB6GCWNN"
+    ></script>
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-      gtag('config', 'G-Z7EB6GCWNN');
+      gtag("config", "G-Z7EB6GCWNN");
     </script>
   </head>
   <body>
@@ -96,18 +104,32 @@
     <div class="notification-container">
       <div class="notification-button">
         <span class="notification-count">{{ notification_count }}</span>
-        <i class="fas fa-bell"></i>
+        <i class="fas fa-bell" id="notification-bell"></i>
       </div>
       <div
         id="notification-panel"
         class="notification-panel"
-        style="display: none"
       >
         {% for notification in user_notifications %}
         <div class="notification-message">
           <p>
-            Your blog - {{ notification.blog.title }} has been {{
-            notification.get_status_display }}
+            {% if notification.notification_type == 'status' %}
+              Your blog {{ notification.blog.title }} has been 
+              {{ notification.blog.status }}
+            {% elif notification.notification_type == 'react' %}
+              Someone reacted on your blog <a
+              href="{% url 'blogapp:blog_details' slug=notification.blog.slug %}"
+              >
+                {{ notification.blog.title }}
+              </a>
+            {% else %}
+              {{ notification.user.username }} commented on your blog 
+              <a
+                href="{% url 'blogapp:blog_details' slug=notification.blog.slug %}"
+              >
+                {{ notification.blog.title }}
+              </a>
+            {% endif %}
           </p>
         </div>
         {% empty %}
@@ -141,7 +163,11 @@
     </footer>
 
     <script>
-      window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+      window.va =
+        window.va ||
+        function () {
+          (window.vaq = window.vaq || []).push(arguments);
+        };
 
       function toggleMenu() {
         var dropdown = document.getElementById("dropdown-menu");
@@ -168,15 +194,15 @@
         .getElementById("notification-bell")
         .addEventListener("click", function () {
           const panel = document.getElementById("notification-panel");
-          if (panel.style.display === "none") {
-            panel.style.display = "block";
-            markNotificationsAsRead(); // Call function to mark notifications as read
-          } else {
-            panel.style.display = "none";
+          panel.style.display =
+            panel.style.display === "none" ? "block" : "none";
+
+          // Mark notifications as read when opening the panel
+          if (panel.style.display === "block") {
+            markNotificationsAsRead();
           }
         });
 
-      // AJAX call to mark notifications as read
       function markNotificationsAsRead() {
         fetch("{% url 'blogapp:mark_notifications_read' %}", {
           method: "POST",
@@ -186,7 +212,6 @@
           },
         }).then((response) => {
           if (response.ok) {
-            // Hide notification count
             document.querySelector(".notification-count").style.display =
               "none";
           }

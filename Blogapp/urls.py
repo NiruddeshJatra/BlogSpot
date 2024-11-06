@@ -17,4 +17,6 @@ urlpatterns = [
   path('login/', views.custom_login, name='login'),
   path('logout/', auth_views.LogoutView.as_view(), name='logout'),
   path('notifications/read/', views.mark_notifications_read, name='mark_notifications_read'),
+  path('blog/<slug:slug>/comment/', views.add_comment, name='add_comment'),
+  path('blog/<slug:slug>/react/', views.react_to_blog, name='react_to_blog'),
 ]

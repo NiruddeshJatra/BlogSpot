@@ -6,45 +6,62 @@ from .models import Blog, Profile, Notification
 
 # Register your models here.
 class BlogAdmin(admin.ModelAdmin):
-	list_display = ("title", "author", "created_at")
-	search_fields = ("title", "author")
-	autocomplete_fields = ["author"]
-	list_filter = ("status",)
-	ordering = ("-created_at",)
-	readonly_fields = ("title", "author", "created_at", "slug", "content", "status")
-	actions = ['publish_blogs', 'reject_blogs']
-	list_per_page = 25
+    list_display = ("title", "author", "created_at")
+    search_fields = ("title", "author")
+    autocomplete_fields = ["author"]
+    list_filter = ("status",)
+    ordering = ("-created_at",)
+    readonly_fields = ("title", "author", "created_at", "slug", "content", "status")
+    actions = ['publish_blogs', 'reject_blogs']
+    list_per_page = 25
 
-	def get_queryset(self, request):
-		qs = super().get_queryset(request)
-		return qs.exclude(status='draft')
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        return qs.exclude(status='draft')
 
-	def change_view(self, request, object_id, form_url='', extra_context=None):
-		blog = self.get_object(request, object_id)
-		if blog.status == 'submitted':
-			blog.status = 'reviewed'
-			blog.save()
-		return super().change_view(request, object_id, form_url, extra_context)
+    def change_view(self, request, object_id, form_url='', extra_context=None):
+        blog = self.get_object(request, object_id)
+        if blog.status == 'submitted':
+            blog.status = 'reviewed'
+            blog.save()
+            Notification.objects.create(
+                user=blog.author,
+                blog=blog,
+                notification_type='status'
+            )
+        return super().change_view(request, object_id, form_url, extra_context)
 
-	def publish_blogs(self, request, queryset):
-		queryset.update(status='published')
-		self.message_user(request, "Selected blogs have been published.")
+    def publish_blogs(self, request, queryset):
+        queryset.update(status='published')
+        self.message_user(request, "Selected blogs have been published.")
+        for blog in queryset:
+            Notification.objects.create(
+                user=blog.author,
+                blog=blog,
+                notification_type='status'
+            )
 
-	def reject_blogs(self, request, queryset):
-		queryset.update(status='rejected')
-		self.message_user(request, "Selected blogs have been rejected.")
+    def reject_blogs(self, request, queryset):
+        queryset.update(status='rejected')
+        self.message_user(request, "Selected blogs have been rejected.")
+        for blog in queryset:
+            Notification.objects.create(
+                user=blog.author,
+                blog=blog,
+                notification_type='status'
+            )
 
-	publish_blogs.short_description = "Publish selected blogs"
-	reject_blogs.short_description = "Reject selected blogs"
-	
-	def save_model(self, request, obj, form, change):
-		if 'status' in form.changed_data:
-			Notification.objects.create(
-				user=obj.author,
-				blog=obj,
-				status=obj.status
-			)
-		super().save_model(request, obj, form, change)
+    def save_model(self, request, obj, form, change):
+        if change and 'status' in form.changed_data:
+            Notification.objects.create(
+                user=obj.author,
+                blog=obj,
+                notification_type='status'
+            )
+        super().save_model(request, obj, form, change)
+
+    publish_blogs.short_description = "Publish selected blogs"
+    reject_blogs.short_description = "Reject selected blogs"
 
 admin.site.register(Blog, BlogAdmin)
 
