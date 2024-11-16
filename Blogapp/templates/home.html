@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}
-  BlogSpot - Unburdening Your Mind
-{% endblock %}
+{% block title %} BlogSpot - Unburdening Your Mind {% endblock %}
 
 {% block content %}
-  <link rel="stylesheet" href="{% static 'css/home.css' %}">
-  
+<link rel="stylesheet" href="{% static 'css/home.css' %}" />
+
+<!-- Your main content goes here -->
+<div id="mainContent" style="display: none">
   <div class="blog-container">
     {% for blog in blogs %}
       <a href="{% url 'blogapp:blog_details' slug=blog.slug %}" class="read-more">
@@ -32,15 +32,63 @@
         <a href="?page=1">&laquo; first</a>
         <a href="?page={{ blogs.previous_page_number }}">previous</a>
       {% endif %}
-
-      <span class="current">
-        Page {{ blogs.number }} of {{ blogs.paginator.num_pages }}
-      </span>
-
+      <span class="current">Page {{ blogs.number }} of {{ blogs.paginator.num_pages }}</span>
       {% if blogs.has_next %}
         <a href="?page={{ blogs.next_page_number }}">next</a>
         <a href="?page={{ blogs.paginator.num_pages }}">last &raquo;</a>
       {% endif %}
     </span>
   </div>
+</div>
+
+<audio id="typingSound" src="{% static 'sounds/typewriter.mp3' %}" preload="auto" autoplay></audio>
+
+<!-- Loading Overlay -->
+<div id="loadingOverlay">
+  <div id="loadingOverlayContent">
+    <p id="line1" class="loadingMessage">Share a thought, however small.</p>
+    <p id="line2" class="loadingMessage" style="display: none">Anonymously, if needed.</p>
+    <p id="line3" class="loadingMessage" style="display: none">Unburden your mind.</p>
+  </div>
+</div>
+
+<script>
+  window.addEventListener("load", function () {
+    if (!sessionStorage.getItem("overlayShown")) {
+      sessionStorage.setItem("overlayShown", "true");
+
+      function typeLine(element, delay) {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            element.style.display = "block";
+            element.classList.add("loadingMessage");
+            element.addEventListener("animationend", resolve, { once: true });
+          }, delay);
+        });
+      }
+
+      async function showMessages() {
+        await typeLine(document.getElementById("line1"), 0);
+        await typeLine(document.getElementById("line2"), 700);
+        await typeLine(document.getElementById("line3"), 700);
+
+        setTimeout(function () {
+          document.getElementById("loadingOverlay").style.opacity = "0";
+          setTimeout(function () {
+            document.getElementById("loadingOverlay").style.display = "none";
+            document.getElementById("mainContent").style.display = "block";
+            document.getElementById("mainContent").style.opacity = "1";
+          }, 800);
+        }, 1200);
+      }
+
+      showMessages();
+    } else {
+      document.getElementById("loadingOverlay").style.display = "none";
+      document.getElementById("mainContent").style.display = "block";
+      document.getElementById("mainContent").style.opacity = "1";
+    }
+  });
+</script>
 {% endblock %}
+

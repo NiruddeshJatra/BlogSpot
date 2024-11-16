@@ -1,3 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Arima:wght@100..700&family=Special+Elite&display=swap');
+/* Overlay styles */
+/* Overlay with glassmorphism effect */
+#loadingOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 1.5em;
+  z-index: 1000;
+  transition: opacity 0.8s ease;
+}
+
+#loadingOverlayContent {
+  text-align: center;
+  padding: 2rem;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Typewriter effect */
+.loadingMessage {
+  font-family: "Special Elite", system-ui;
+  overflow: hidden;
+  white-space: nowrap;
+  line-height: 2;
+  border-right: 3px solid #ffffff;
+  animation: typing 2.5s steps(60, end) forwards, blink-caret 1s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: #ffffff; }
+}
+
+/* Main content fade-in */
+#mainContent {
+  opacity: 0;
+  transition: opacity 1.5s ease;
+}
+
 /* Blog container for grid layout */
 .blog-container {
   display: grid;
@@ -169,5 +223,14 @@
   .pagination .current {
     margin: 0 4px;
     padding: 5px 10px;
+  }
+
+  #loadingOverlayContent {
+    font-size: 1rem;
+  }
+
+  .loadingMessage {
+    font-size: 0.9rem;
+    line-height: 1.5;
   }
 }
